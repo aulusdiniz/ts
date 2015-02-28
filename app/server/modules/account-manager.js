@@ -20,6 +20,27 @@ var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}),
 });
 var accounts = db.collection('accounts');
 
+var trincas = db.collection('trincas');
+
+//TODO adicionar id de trinca.
+exports.publishTrinca = function(newData, callback){
+	trincas.findOne({user:newData.user}, function(e, o){
+		console.log('working.. acc-man');
+		newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		trincas.insert(newData, {safe: true}, callback);
+		console.log('recording.. Ok.');
+	});
+}
+
+exports.getAllTrincaRecords = function(callback)
+{
+	trincas.find().toArray(
+		function(e, res) {
+		if (e) callback(e)
+		else callback(null, res)
+	});
+};
+
 /* login validation methods */
 
 exports.autoLogin = function(user, pass, callback)

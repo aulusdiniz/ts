@@ -4,22 +4,21 @@ extends layout
 block content
 	#login-container
 		form( method="post")#login-form.well.span4
-			h1 Hello!
-			p.subheading Please Login To Your Account
-			label Username 
+			h1 Bem vindo!
+			p.subheading Por favor acesse sua conta
+			label Usuário 
 			input(type="text", name="user", id='user-tf').span4.required
-			label Password
+			label Senha
 			input(type="password", name="pass", id='pass-tf').span4.required
 			button(type="submit")#btn-login.btn.btn-primary
 				i.icon-lock.icon-white
-				| Sign in
-			label#remember-me.checkbox Remember Me
+				| Entrar
+			label#remember-me.checkbox Manter ativo
 				input(type="checkbox", checked='checked')
 			div.clear-fix
 			hr
 			div.btm-links
-				a(href='#')#forgot-password Forgot Your Password?
-				a(href='/signup')#create-account Create An Account
+				a(href='#')#forgot-password Esqueceu a senha?
 
 	include modals/alert
 	include modals/lost-password
@@ -29,6 +28,7 @@ block scripts
 	script(src='/vendor/jquery.form.js')
 	script(src='/vendor/bootstrap-modal.js')
 	script(src='/vendor/bootstrap-transition.js')
+	//- script(src='/vendor/bootstrap/js/bootstrap.js')	
 	script(src='/js/views/login.js')
 	script(src='/js/controllers/loginController.js')
 	script(src='/js/form-validators/loginValidator.js')
