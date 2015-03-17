@@ -1,0 +1,67 @@
+extends layout_game
+  
+block content  
+  - var user = typeof(udata) != 'undefined' ? udata : { }
+  
+  div#user_login(style='position:absolute; font-size:18px; background-color:#17B; margin:0 50px 0 50px;')
+    ul(style='list-style:none; margin-left:20px; padding:5px 15px 0 0;')
+      li
+        a(href='', style='color:#FFF;') Olá #{ user.name }
+        input#userref(type="hidden", value=user.user)
+      li
+        a(href='', style='color:#FFF;') Sair
+  
+  div#game(style='background-color:#19592D;')
+    script(src='/js/views/main.js')
+  
+  div#btn_publish(onclick='javascript:next_step(true)')
+    a(style='padding:5px;') Publicar
+  
+  div#ask_publish(style='padding:0 0 20px 5px;')
+    h1 Você tem uma trinca, Gostaria de publicar agora?
+    a(href="javascript:next_step(true);") Sim
+    a(href="javascript:next_step(false);") Não
+  
+  div#publish_now_cards
+    a(style='margin-left:-20px;') Causa do Problema
+    img#card1(style="margin-right: 40px;", height ='25%', width = '25%')
+    a() Problema
+    img#card2(style="margin-right: 40px;", height = '25%', width = '25%')
+    a() Solução do Problema
+    img#card3(style="margin-right: 40px;", height = '25%', width = '25%')
+  
+  div#publish_now
+    form#justf(method='post')
+      h1 Escreva uma frase justificando sua trinca: (Exemplo)
+      fieldset
+        div.textarea_div
+          textarea#justif.text_trinca_just(style='background-color:inherit;border: 3px solid #cccccc;', form='justf')
+        //- input#publishJustif(type='button', form='justf') Publicar
+        a#publishJustif(href="javascript:publish();", style='padding:5px;') Publicar
+    
+  div#menu_game(style='margin:0 0 0 50px; position:absolute; top:76%; background-color:#0DA85B;')
+    ul(style='margin:0 0 0 -20px; list-style:none; width:220px; font-size:15px; font-weight:bold;')
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Trinca Social Atuação CIDADES
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Trincas publicadas (22)
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Minhas trincas (6)
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Méritos
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Configurações
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Ajuda
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Amigos
+      li(style='margin:10px 0 15px 0;')
+        a(href='#', style='color:#175979; text-decoration:underline;') Novo jogo
+
+block scripts
+  script(src='/vendor/jquery.form.js')
+        
+
+        
+        
+        

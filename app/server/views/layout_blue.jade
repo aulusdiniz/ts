@@ -1,0 +1,39 @@
+!!! 5
+html
+  head
+    title Node.js Trinca Social
+    link(rel='stylesheet', href='/vendor/bootstrap.min.css')
+    //- link(rel='stylesheet', href='/vendor/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body(style="background:#20315F;")
+    #header
+      a(href='/')
+        img(style='position:absolute', src='/img/logo-mini.jpg', height='151', width='241')
+      img(style='left:50%; margin-left: -241px; z-index:0;', src='/img/banner-cards.jpg', height='151', width='482')
+      #menu_upper_box
+        #menu_upper_content
+          a(href='/signup') Cadastre-se
+          a(href='/login') Entrar
+          a(href='/game') Jogar Agora
+    #menu
+      a(href='') O Jogo
+      a(href='') Como Jogar
+      a(href='/profile') Minhas Trincas
+      a(href='/publish') Trincas Publicadas
+      a(href='') Rede Gentil
+      a(href='') Jogo Impresso
+
+    //- #footer
+    //-   a(href='') Política de privacidade
+    //-   |
+    //-   a(href='') Termos de privacidade
+    //-   |
+    //-   a(href='') Acordos
+    //-   |
+    //-   a(href='') Ajuda
+    //-   |
+    //-   a(href='') Créditos
+    //-   |
+    //-   a(href='') Contato
+  block content
+  block scripts

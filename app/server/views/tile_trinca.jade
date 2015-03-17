@@ -1,0 +1,28 @@
+mixin tile_trinca(trinca)
+  div#trinca_voting(style='margin-bottom:10px;', width='17vw')
+    div#voting_item(style='background-color:#C7DF8B; height:130px; width:470px;')
+      div#top_panel_left(style='background-color:#28B34A; color:white; height:20px; margin-left:15px; width:auto; padding:4px 2px 2px 10px;')
+        a(href='#', style='text-decoration:none; color:#FFF;')= trinca.date
+      div#top_panel_right(style='background-color:#28B34A; color:#1A441F; height:20px; margin-left:245px; margin-top:-26px; width:auto; padding:4px 2px 2px 125px;')
+        a(href='#', style='text-decoration:none; color:#1A441F; font-weight:bold; font-size:15px;')= trinca.user
+      div#inner_panel(style='background-color:#28B34A; margin-left:15px; height:74px;')
+        div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
+          a(href='#', style='margin-left:40px; text-decoration:none;')= trinca.card1
+          a(href='#', style='margin-left:90px; text-decoration:none;')= trinca.card2
+          a(href='#', style='margin-left:95px; text-decoration:none;')= trinca.card3
+        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
+        img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+        img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px;  px; margin-left:-50px;')
+          
+      div#foot_panel(style='background-color:#1B9355; margin-left:15px; height:30px; color:white;')
+        img(src='../img/people_icon@3x.png', height='30px', width='30px', style='margin-left:30px;')
+        a(href='/voting', style='color:white; text-decoration:none;') (14)
+        img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:13.8vw;')
+        a(href='', style='color:white; text-decoration:none;') (4) 
+        img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+        a(href='', style='color:white; text-decoration:none;') (7)
+        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+        a(href='', style='color:white; text-decoration:none;') (3)
+            

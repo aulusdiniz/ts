@@ -84,7 +84,6 @@ module.exports = function(app) {
 				if (e){
 					res.send('error-updating-account', 400);
 				}else
-					console.log('Ok.. posted')
 					res.send('ok', 200);
 			});
 		}
@@ -126,7 +125,43 @@ module.exports = function(app) {
 // Profile com tiles //
 
 	app.get('/profile', function(req, res) {
-		res.render('profile');
+		if (req.session.user == null){
+			// if user is not logged-in redirect back to login page //
+				res.render('login', {title: 'Trinca Social - Perfil'});
+		}
+		else{
+			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
+			if (o != null){
+				AM.getAllTrincaUser( req.session.user, function(e, trincas){
+					req.session.user = o;
+					res.render('profile', {
+						title : 'Trinca Social - Perfil',
+						udata : req.session.user,
+						tdata: trincas
+					});
+				})
+			}
+			else{
+				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
+				}
+			});
+		}
+	});
+
+	app.post('/profile', function(req, res){
+		AM.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+			if (!o){
+				res.send(e, 400);
+			}	else{
+			    req.session.user = o;
+				if (req.param('remember-me') == 'true'){
+					res.cookie('user', o.user, { maxAge: 900000 });
+					res.cookie('pass', o.pass, { maxAge: 900000 });
+				}
+
+				res.send(o, 200);
+			}
+		});
 	});
 
 // Trinca published //
@@ -138,8 +173,79 @@ module.exports = function(app) {
 // Trinca em votação //
 
 	app.get('/voting', function(req, res) {
-		res.render('trinca_voting');
+		if (req.session.user == null){
+			// if user is not logged-in redirect back to login page //
+				res.render('login', {title: 'Trinca Social - Perfil'});
+		}
+		else{
+			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
+			if (o != null){
+				AM.getAllTrincaUser( req.session.user, function(e, trincas){
+					req.session.user = o;
+					res.render('trinca_voting', {
+						title : 'Trinca Social - Votação',
+						tdata: trincas
+					});
+				})
+			}
+			else{
+				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
+				}
+			});
+		}
 	});
+
+	app.get('/voting/:id', function(req, res) {
+		if (req.session.user == null){
+			// if user is not logged-in redirect back to login page //
+				res.render('login', {title: 'Trinca Social - Perfil'});
+		}
+		else{
+			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
+			if (o != null){
+				req.session.user = o;
+				AM.findTrincaById( req.params.id, function(e, trinca){
+					res.render('trinca_voting', {
+						title : 'Trinca Social - Votação',
+						tdata: trinca,
+						udata: req.cookies.user
+					});
+				})
+			}
+			else{
+				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
+				}
+			});
+		}
+	});
+
+	app.post('/voting/:id', function(req, res) {
+		AM.commentTrinca({
+				user_guest: req.param('user'),
+				comment: req.param('comment'),
+				vote: req.param('vote')
+			},
+			function(){
+				res.cookie('trid', req.params.id, {maxAge: 900000});
+			});
+	});
+
+	app.post('/voting', function(req, res){
+		AM.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+			if (!o){
+				res.send(e, 400);
+			}	else{
+			    req.session.user = o;
+				if (req.param('remember-me') == 'true'){
+					res.cookie('user', o.user, { maxAge: 900000 });
+					res.cookie('pass', o.pass, { maxAge: 900000 });
+				}
+
+				res.send(o, 200);
+			}
+		});
+	});
+
 
 // Control panel //
 
@@ -267,9 +373,21 @@ module.exports = function(app) {
 	});
 
 	app.get('/print_trincas', function(req, res) {
-		AM.getAllTrincaRecords( function(e, trincas){
+		AM.getAllTrincaUser( req.session.user, function(e, trincas){
 			res.render('print_trincas', { title : 'Lista de Trincas', trcs : trincas });
 		})
+	});
+
+	app.get('/print_comments', function(req, res) {
+		if(req.session.trid){
+			console.log(req.session.trid);
+			AM.findTrincaById( req.session.trid, function(e, trinca){
+				res.render('print_comments', {
+					title : 'Trinca Social - Votação (comentários)',
+					trcs	: trinca,
+				});
+			});
+		}else res.send('registro não encontrado!', 400);
 	});
 
 	app.post('/delete', function(req, res){

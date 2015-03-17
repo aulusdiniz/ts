@@ -1,0 +1,64 @@
+extends layout
+include tile_trinca
+
+block content
+  - var user = typeof(udata) != 'undefined' ? udata : { }
+  - var trinca = typeof(tdata) != 'undefined' ? tdata : { }
+  
+  input(type='hidden', value= user.name)#userId
+  
+  div(style='width:auto;display:inline-block;margin-top:35px;margin-left:48vw; margin-bottom:0px;')
+    a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trinca em Votação
+    div(style='margin-top:20px;')
+      include tiles_titles.jade  
+  
+  div(style='position:absolute;margin-left:47vw; margin-top:5px; max-height:82.4vh;')
+    //- include tile_trinca.jade
+    +tile_trinca(trinca)
+    
+    div(style='background-color:#91D0AD; margin-top:-10px;')
+      textarea#comment_vote(style='background-color:#91D0AD; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify;', rows="3", cols="62")
+        |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          
+    div#foot_panel(style='background-color:#0DA85B; height:30px; color:white;')
+      img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:6vw;')
+      a(href='javascript:commentAndVote("good");') concordo
+      img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+      a(href='javascript:commentAndVote("bad");') discordo
+      img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+      a(href='#') comentar
+      img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+      a(href='#') denunciar
+    
+    div#comments(style='background-color:#32AD67; overflow-y:scroll; max-height:235px;')
+      include tile_vote_comment.jade
+    
+  div#profile_pic(style='position:absolute; margin: 0 0 0 300px')
+    ul(style='list-style: none;')
+      li
+        img(src='../img/profile_pic@3x.png')
+      li
+        a(style='margin-left:45px; color:white;') seguir
+            
+  div#profile_menu(style='position:absolute; margin:250px 0 0 22vw; display:block; max-width:220px;')
+    ul(style='list-style: none; text-align:right;')
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas publicadas (25)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas aprovadas (12)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas desaprovadas (1)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas em votação (2)
+        
+    ul(style='list-style: none; text-align:right; margin-top:50px;')
+      li
+        a(style='text-decoration:none; color:#FFF; font-size:17px; font-weight:regular;') ÁREA DE ATUAÇÃO
+      li  
+        a(style='text-decoration:none; color:#FFF; font-size:15px; font-weight:regular;') CASA
+      
+  block scripts
+    script(src='../vendor/jquery-1.11.1.js')
+    script(src='../vendor/bootstrap/js/bootstrap.min.js')
+    script(src='../js/views/vote.js')	
+                                              

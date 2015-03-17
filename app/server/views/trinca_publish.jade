@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;padding-top:25px;')
+    a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas em Votação
+    div(style='margin-top:20px;')
+      include tiles_titles.jade
+  div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;')  
+    a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas Finalizadas
+    div(style='margin-top:20px;')
+      include tiles_titles.jade
+      
+  div#left(style='float:left; margin-left:100px; position:absolute;max-height:71.3vh;overflow-y:scroll;')
+    div#content_block(style='float:both;')
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+  
+  div#right(style='float:right; margin-left:55vw; position:absolute;max-height:71.3vh;overflow-y:scroll;')
+    div#content_block(style='float:both;')
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      include tile_trinca.jade
+      
+
+  block scripts
+  script(src='vendor/jquery-1.11.1.js')
+  script(src='vendor/bootstrap/js/bootstrap.min.js')

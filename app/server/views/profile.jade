@@ -1,0 +1,46 @@
+extends layout_blue
+include tile_profile
+
+block content
+  - var user = typeof(udata) != 'undefined' ? udata : { }
+  - var trincas = typeof(tdata) != 'undefined' ? tdata : { }
+  
+  div#content_block(style='position:absolute;margin-left:47vw; overflow-y:scroll; margin-top:25px; max-height:82.4vh;')
+    div 
+      - for (var i = 0; i < trincas.length; i++)
+        +tile_profile(i, trincas)
+
+  
+  div#profile_pic(style='position:absolute;')
+    ul(style='list-style: none; text-align:left;')
+      li
+        img(src='img/profile_pic@3x.png', style='margin:10px 0 0 200px;')
+      li(style='margin:-180px 0 0 230px;')
+        a(style='font-size:18px; color:#000; text-decoration:none;') #{ user.name }
+      li(style='margin:150px 0 0 0;')
+        a(style='margin-left:230px; color:white;') editar perfil
+  
+  div#profile_menu(style='position:absolute; margin:25px 0 0 28vw; display:block; max-width:220px;')
+    ul(style='list-style: none; text-align:right;')
+      li 
+        a(style='text-decoration:none; color:#F2B81F; font-size:20px;') MINHAS TRINCAS 
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas publicadas (25)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas aprovadas (12)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas desaprovadas (1)
+      li
+        a(style='color:#F2B81F; font-size:15px;') Trincas em votação (2)
+      li 
+        a(style='color:#F2B81F; font-size:15px;') Seguidores (9)
+    
+    ul(style='text-align:right; margin-top:50px;')
+      li
+        a(style='text-decoration:none; color:#FFF; font-size:17px; font-weight:regular;') ÁREA DE ATUAÇÃO
+      li  
+        a(style='text-decoration:none; color:#FFF; font-size:15px; font-weight:regular;') CASA
+      
+  block scripts
+  script(src='vendor/jquery-1.11.1.js')
+  script(src='vendor/bootstrap/js/bootstrap.min.js')	

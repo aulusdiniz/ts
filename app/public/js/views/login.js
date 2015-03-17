@@ -15,8 +15,18 @@ $(document).ready(function(){
 				return true;
 			}
 		},
+		//define which page should be loaded
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') window.location.href = '/game';
+			if (status == 'success'){
+
+				if(window.location.href == '/game/login')
+					window.location.href = '/game';
+
+				if(window.location.href == '/profile')
+					window.location.href = '/profile';
+
+				window.location.reload();
+			}
 		},
 		error : function(e){
             lv.showLoginError('Falha de Login', 'Por favor, verifique seu login e senha.');

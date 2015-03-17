@@ -22,13 +22,16 @@ var accounts = db.collection('accounts');
 
 var trincas = db.collection('trincas');
 
-//TODO adicionar id de trinca.
+var votes = db.collection('votes');
+
+exports.commentTrinca = function(newData, callback){
+	votes.insert(newData, {safe:true}, callback);
+}
+
 exports.publishTrinca = function(newData, callback){
 	trincas.findOne({user:newData.user}, function(e, o){
-		console.log('working.. acc-man');
 		newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 		trincas.insert(newData, {safe: true}, callback);
-		console.log('recording.. Ok.');
 	});
 }
 
@@ -39,7 +42,26 @@ exports.getAllTrincaRecords = function(callback)
 		if (e) callback(e)
 		else callback(null, res)
 	});
-};
+}
+
+exports.getAllTrincaUser = function(data, callback)
+{
+	trincas.find({user:data.user}).toArray(
+		function(e, res) {
+		if (e) callback(e)
+		else callback(null, res)
+	});
+}
+
+exports.findTrincaById = function(id, callback)
+{
+	trincas.findOne({_id: trincas.db.bson_serializer.ObjectID(id)}, function(e, res) {
+		if (e) callback(e)
+		else{
+	 		callback(null, res);
+		}
+	});
+}
 
 /* login validation methods */
 
