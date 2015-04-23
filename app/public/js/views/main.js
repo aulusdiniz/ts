@@ -48,7 +48,8 @@ function publish(){
 			card1: getCard(0),
 			card2: getCard(1),
 			card3: getCard(2),
-			justif: $('textarea#justif').val()
+			justif: $('textarea#justif').val(),
+			status: "voting"
 		},
 		success	: function(responseText, status, xhr, $form){
 			if (status == 'success') {

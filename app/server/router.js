@@ -79,7 +79,8 @@ module.exports = function(app) {
 				card1 		: req.param('card1'),
 				card2 		: req.param('card2'),
 				card3 		: req.param('card3'),
-				justif 	: req.param('justif')
+				justif 	: req.param('justif'),
+				status : req.param('status')
 			}, function(e, o){
 				if (e){
 					res.send('error-updating-account', 400);
@@ -167,8 +168,44 @@ module.exports = function(app) {
 // Trinca published //
 
 	app.get('/publish', function(req, res) {
-		res.render('trinca_publish');
+		// res.render('trinca_publish');
+		if (req.session.user == null){
+			// if user is not logged-in redirect back to login page //
+				res.render('login', {title: 'Trinca Social - Perfil'});
+		}
+		else{
+			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
+			if (o != null){
+				AM.getAllTrincaUser( req.session.user, function(e, trincas){
+					req.session.user = o;
+					res.render('trinca_publish', {
+						title : 'Trinca Social - Publicadas',
+						tdata: trincas
+					});
+				})
+			}
+			else{
+				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
+				}
+			});
+		}
 	});
+
+	app.post('/publish', function(req, res){
+		AM.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+			if (!o){
+				res.send(e, 400);
+			}	else{
+			    req.session.user = o;
+				if (req.param('remember-me') == 'true'){
+					res.cookie('user', o.user, { maxAge: 900000 });
+					res.cookie('pass', o.pass, { maxAge: 900000 });
+				}
+				res.send(o, 200);
+			}
+		});
+	});
+
 
 // Trinca em votação //
 

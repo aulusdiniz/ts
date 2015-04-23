@@ -1,6 +1,11 @@
 extends layout
+//- incluir dados das trincas publicadas na página
+include tile_publish.jade
 
 block content
+  
+  - var trincas = typeof(tdata) != 'undefined' ? tdata : { }
+
   div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;padding-top:25px;')
     a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas em Votação
     div(style='margin-top:20px;')
@@ -12,23 +17,15 @@ block content
       
   div#left(style='float:left; margin-left:100px; position:absolute;max-height:71.3vh;overflow-y:scroll;')
     div#content_block(style='float:both;')
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
+      - for (var i=0; i < trincas.length; i++)
+          if(trincas[i].status == 'voting')
+            +tile_publish(i, trincas)
   
   div#right(style='float:right; margin-left:55vw; position:absolute;max-height:71.3vh;overflow-y:scroll;')
     div#content_block(style='float:both;')
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
+      - for (var i=0; i < trincas.length; i++)
+          if(trincas[i].status == 'accept')
+            +tile_publish(i, trincas)
       
 
   block scripts
