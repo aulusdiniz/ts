@@ -3,6 +3,7 @@ var crypto 		= require('crypto');
 var MongoDB 	= require('mongodb').Db;
 var Server 		= require('mongodb').Server;
 var moment 		= require('moment');
+var ObjectID = require('mongodb').ObjectID
 
 var dbPort 		= 27017;
 var dbHost 		= 'localhost';
@@ -18,6 +19,7 @@ var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}),
 		console.log('connected to database :: ' + dbName);
 	}
 });
+
 var accounts = db.collection('accounts');
 
 var trincas = db.collection('trincas');
@@ -26,6 +28,16 @@ var votes = db.collection('votes');
 
 exports.commentTrinca = function(newData, callback){
 	votes.insert(newData, {safe:true}, callback);
+}
+
+exports.findVotesByTrinca = function(id, callback){
+	var id_found = ObjectID.createFromHexString(id);
+// try without _id: id_found
+	votes.find({trinca_id: {_id: id_found}}).toArray(
+		function(e, res) {
+			if (e) callback(e)
+			else callback(res)
+		});
 }
 
 exports.publishTrinca = function(newData, callback){
@@ -55,10 +67,16 @@ exports.getAllTrincaUser = function(data, callback)
 
 exports.findTrincaById = function(id, callback)
 {
-	trincas.findOne({_id: trincas.db.bson_serializer.ObjectID(id)}, function(e, res) {
-		if (e) callback(e)
-		else{
-	 		callback(null, res);
+	var id_found = ObjectID.createFromHexString(id);
+
+	trincas.findOne({_id: id_found}, function(e, res) {
+ 		if(e)
+		{
+			callback(e);
+		}
+		else
+		{
+			callback(res);
 		}
 	});
 }
