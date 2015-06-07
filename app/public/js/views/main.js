@@ -1,8 +1,10 @@
 enchant();
+// enchant.ENV.PREVENT_DEFAULT_KEY_CODES = [32,37,];
 //var _trinca;
 
 var trinca_export = [];
 var round = 0;
+var game_running = false;
 
 function getCard(index){
 
@@ -89,6 +91,7 @@ function publish(){
 
 window.onload = function() {
     var game = new Game(window.screen.availWidth, window.screen.availHeight-95);
+		game.keyunbind(32);
 	//Escalas
 	var sprite_scale = 3/5;
 	var sprite_width = 176;
@@ -209,17 +212,18 @@ window.onload = function() {
 
 	//Baralho, atualiza os slots do holder
     var Deck = enchant.Class.create(enchant.Sprite, {
-        initialize: function(x, y, holder, hand, cards) {
-            enchant.Sprite.call(this, sprite_width, sprite_height);
-            this.x = x;
-            this.y = y;
-			this.scale(sprite_scale,sprite_scale);
-            this.image = game.assets['/img/cards/deck.png'];
-			this.availCards = cards;
-			this.usedCards = [];
+      initialize: function(x, y, holder, hand, cards) {
+				enchant.Sprite.call(this, sprite_width, sprite_height);
+        this.x = x;
+        this.y = y;
+				this.scale(sprite_scale,sprite_scale);
+	      this.image = game.assets['/img/cards/deck.png'];
+				this.availCards = cards;
+				this.usedCards = [];
+
 			this.giveCard = function(target){
 
-				if(Dealer.tradeOne!=null){
+				if(Dealer.tradeOne != null){
 					Dealer.unselectCard(Dealer.tradeOne);
 					Dealer.tradeOne = null;
 					Dealer.tradeOp = 0;
@@ -252,10 +256,15 @@ window.onload = function() {
 						this.giveCard(hand);
 					}
 				}
-			this.addEventListener('touchend', function(){
-				this.giveCard(holder);
-            });
-            game.rootScene.addChild(this);
+				this.addEventListener('touchend', function(){
+					if(!game_running) {
+						game_running = true;
+						this.giveHand();
+					}else {
+						this.giveCard(holder);
+						}
+        	});
+        game.rootScene.addChild(this);
         }
     });
 
@@ -617,13 +626,13 @@ window.onload = function() {
 			holder.fixZorder();
 		var hand   = new Hand(createSlots(1,6,-3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
-		deck.giveHand();
+		// deck.giveHand();
 		var trinca = new Trinca(createSlots(1,3,-6, 0));
 		window._trinca = trinca;
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
 		/*for(var i=0;i<6;i++){
-			//deck.giveCard(holder);
+			//#.giveCard(holder);
 		}*/
 		$("#enchant-stage").css("display","inline");
     };
