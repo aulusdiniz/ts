@@ -385,6 +385,7 @@ window.onload = function() {
 									break;
 								}
 								if(Dealer.tradeOne.y>handPos && obj.y<=desl_ver){
+									Dealer.unselectCard(Dealer.tradeOne);
 									Dealer.unselectCard();
 									Dealer.unselectCard(obj);
 									Dealer.tradeOne = null;
