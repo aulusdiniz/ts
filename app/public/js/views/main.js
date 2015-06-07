@@ -359,7 +359,8 @@ window.onload = function() {
 				Dealer.trade = function(obj){
 					//verifica se o não é o mesmo obj já selecionado e
 					//se não está na parte que não pode mais ser escolhida do descarte.
-					if(obj != Dealer.tradeOne && obj.y >= desl_ver){
+					// && obj.y >= desl_ver => restrição para selecionar carta só da primeira linha
+					if(obj != Dealer.tradeOne ){
 						//view: select card
 						obj.y -= selectOffset;
 					//Sequência de ação de clique de escolha para troca.
@@ -384,7 +385,7 @@ window.onload = function() {
 									break;
 								}
 								if(Dealer.tradeOne.y>handPos && obj.y<=desl_ver){
-									Dealer.unselectCard(Dealer.tradeOne);
+									Dealer.unselectCard();
 									Dealer.unselectCard(obj);
 									Dealer.tradeOne = null;
 									Dealer.tradeOp = 0;
