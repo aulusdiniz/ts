@@ -25,4 +25,20 @@ mixin tile_trinca(trinca)
         a(href='', style='color:white; text-decoration:none;') (7)
         img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
         a(href='', style='color:white; text-decoration:none;') (3)
+      
+      div(style='background-color:#91D0AD; margin-top:1px;')
+        h2(style='background-color:#91D0AD; display:inline-block; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify; word-wrap: break-word;')= trinca.justif
+      
+      div(style='background-color:#91D0AD; margin-top:1px;')
+        textarea#comment_vote(style='background-color:#91D0AD; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify;', rows="3", cols="62")
+          |Escreva um comentário e vote.
             
+      div#foot_panel(style='background-color:#0DA85B; height:30px; color:white;')
+        img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:6vw;')
+        a(href='javascript:commentAndVote("good");') concordo
+        img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+        a(href='javascript:commentAndVote("bad");') discordo
+        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+        a(href='#') comentar
+        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+        a(href='#') denunciar

@@ -274,7 +274,7 @@ module.exports = function(app) {
 						trinca_id_found = trinca_ids;
 					}
 					console.log("≈√trinca_id_found = ");
-					console.log(trinca_id_found._id);
+					console.log(trinca_id_found);
 
 					AM.findVotesByTrinca(trinca_id_found._id, function(votes){
 						console.log("≈√votes");

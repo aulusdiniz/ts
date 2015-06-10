@@ -1,5 +1,5 @@
 enchant();
-// enchant.ENV.PREVENT_DEFAULT_KEY_CODES = [32,37,];
+enchant.ENV.PREVENT_DEFAULT_KEY_CODES = [];
 //var _trinca;
 
 var trinca_export = [];
@@ -7,7 +7,6 @@ var round = 0;
 var game_running = false;
 
 function getCard(index){
-
 	return trinca_export[index];
 }
 
@@ -91,7 +90,7 @@ function publish(){
 
 window.onload = function() {
     var game = new Game(window.screen.availWidth, window.screen.availHeight-95);
-		game.keyunbind(32);
+
 	//Escalas
 	var sprite_scale = 3/5;
 	var sprite_width = 176;
