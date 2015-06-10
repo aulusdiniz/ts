@@ -177,7 +177,7 @@ module.exports = function(app) {
 		else{
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 			if (o != null){
-				AM.getAllTrincaUser( req.session.user, function(e, trincas){
+				AM.getAllTrincaRecords(function(e, trincas){
 					req.session.user = o;
 					res.render('trinca_publish', {
 						title : 'Trinca Social - Publicadas',
@@ -269,13 +269,9 @@ module.exports = function(app) {
 
 				AM.findTrincaById(req.params.id, function(trinca_ids){
 
-					console.log("trinca_ids = ");
-					console.log(trinca_ids);
-
 					if(trinca_ids)
 					{
 						trinca_id_found = trinca_ids;
-						res.cookie('trinca_id', trinca_id_found);
 					}
 					console.log("≈√trinca_id_found = ");
 					console.log(trinca_id_found._id);
