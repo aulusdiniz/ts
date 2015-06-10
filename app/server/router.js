@@ -2,6 +2,7 @@
 var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+var trinca_id_found = "Not initialized.";
 
 module.exports = function(app) {
 
@@ -266,30 +267,33 @@ module.exports = function(app) {
 			if (o != null){
 				req.session.user = o;
 
-				var trinca_id_found = "Not initialized.";
-
 				AM.findTrincaById(req.params.id, function(trinca_ids){
+
+					console.log("trinca_ids = ");
+					console.log(trinca_ids);
 
 					if(trinca_ids)
 					{
 						trinca_id_found = trinca_ids;
 						res.cookie('trinca_id', trinca_id_found);
 					}
-					console.log("≈√trinca_id_found");
-					console.log(trinca_id_found);
-				});
+					console.log("≈√trinca_id_found = ");
+					console.log(trinca_id_found._id);
 
-				AM.findVotesByTrinca(trinca_id_found._id, function(votes){
-					console.log("≈√votes");
-					console.log(votes);
+					AM.findVotesByTrinca(trinca_id_found._id, function(votes){
+						console.log("≈√votes");
+						console.log(votes);
 
-					res.render('trinca_voting', {
-						title : 'Trinca Social - Votação',
-						tdata: trinca_id_found,
-						udata: req.session.user,
-						tvotes: votes
+						res.render('trinca_voting', {
+							title : 'Trinca Social - Votação',
+							tdata: trinca_id_found,
+							udata: req.session.user,
+							tvotes: votes
+						});
 					});
+
 				});
+
 			}
 			else{
 				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });

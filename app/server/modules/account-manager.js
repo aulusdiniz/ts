@@ -33,7 +33,7 @@ exports.commentTrinca = function(newData, callback){
 exports.findVotesByTrinca = function(id, callback){
 	// var id_found = ObjectID.createFromHexString(id);
 // try without _id: id_found ==>> {trinca_id: {_id: id_found}}
-	votes.find().toArray(
+	votes.find({"trinca_id._id":""+id}).sort({ $natural : -1 }).toArray(
 		function(e, res) {
 			if (e) callback(e)
 			else callback(res)
@@ -49,7 +49,7 @@ exports.publishTrinca = function(newData, callback){
 
 exports.getAllTrincaRecords = function(callback)
 {
-	trincas.find().toArray(
+	trincas.find().sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
 		else callback(null, res)
@@ -58,7 +58,7 @@ exports.getAllTrincaRecords = function(callback)
 
 exports.getAllTrincaUser = function(data, callback)
 {
-	trincas.find({user:data.user}).toArray(
+	trincas.find({user:data.user}).sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
 		else callback(null, res)
@@ -67,9 +67,16 @@ exports.getAllTrincaUser = function(data, callback)
 
 exports.findTrincaById = function(id, callback)
 {
+	console.log("aqui é o id da findTrincaByID = " + id);//exist
+
+
 	var id_found = ObjectID.createFromHexString(id);
+	console.log("id_found do findTrincaByID = "+ id_found);//exist
+
+
 
 	trincas.findOne({_id: id_found}, function(e, res) {
+		console.log("id_found do findTrincaByID = "+ id_found);
  		if(e)
 		{
 			callback(e);
