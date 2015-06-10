@@ -1,11 +1,12 @@
 enchant();
+enchant.ENV.PREVENT_DEFAULT_KEY_CODES = [];
 //var _trinca;
 
 var trinca_export = [];
 var round = 0;
+var game_running = false;
 
 function getCard(index){
-
 	return trinca_export[index];
 }
 
@@ -48,7 +49,8 @@ function publish(){
 			card1: getCard(0),
 			card2: getCard(1),
 			card3: getCard(2),
-			justif: $('textarea#justif').val()
+			justif: $('textarea#justif').val(),
+			status: "voting"
 		},
 		success	: function(responseText, status, xhr, $form){
 			if (status == 'success') {
@@ -88,6 +90,7 @@ function publish(){
 
 window.onload = function() {
     var game = new Game(window.screen.availWidth, window.screen.availHeight-95);
+
 	//Escalas
 	var sprite_scale = 3/5;
 	var sprite_width = 176;
@@ -208,17 +211,18 @@ window.onload = function() {
 
 	//Baralho, atualiza os slots do holder
     var Deck = enchant.Class.create(enchant.Sprite, {
-        initialize: function(x, y, holder, hand, cards) {
-            enchant.Sprite.call(this, sprite_width, sprite_height);
-            this.x = x;
-            this.y = y;
-			this.scale(sprite_scale,sprite_scale);
-            this.image = game.assets['/img/cards/deck.png'];
-			this.availCards = cards;
-			this.usedCards = [];
+      initialize: function(x, y, holder, hand, cards) {
+				enchant.Sprite.call(this, sprite_width, sprite_height);
+        this.x = x;
+        this.y = y;
+				this.scale(sprite_scale,sprite_scale);
+	      this.image = game.assets['/img/cards/deck.png'];
+				this.availCards = cards;
+				this.usedCards = [];
+
 			this.giveCard = function(target){
 
-				if(Dealer.tradeOne!=null){
+				if(Dealer.tradeOne != null){
 					Dealer.unselectCard(Dealer.tradeOne);
 					Dealer.tradeOne = null;
 					Dealer.tradeOp = 0;
@@ -251,10 +255,15 @@ window.onload = function() {
 						this.giveCard(hand);
 					}
 				}
-			this.addEventListener('touchend', function(){
-				this.giveCard(holder);
-            });
-            game.rootScene.addChild(this);
+				this.addEventListener('touchend', function(){
+					if(!game_running) {
+						game_running = true;
+						this.giveHand();
+					}else {
+						this.giveCard(holder);
+						}
+        	});
+        game.rootScene.addChild(this);
         }
     });
 
@@ -349,7 +358,8 @@ window.onload = function() {
 				Dealer.trade = function(obj){
 					//verifica se o não é o mesmo obj já selecionado e
 					//se não está na parte que não pode mais ser escolhida do descarte.
-					if(obj != Dealer.tradeOne && obj.y >= desl_ver){
+					// && obj.y >= desl_ver => restrição para selecionar carta só da primeira linha
+					if(obj != Dealer.tradeOne ){
 						//view: select card
 						obj.y -= selectOffset;
 					//Sequência de ação de clique de escolha para troca.
@@ -375,6 +385,7 @@ window.onload = function() {
 								}
 								if(Dealer.tradeOne.y>handPos && obj.y<=desl_ver){
 									Dealer.unselectCard(Dealer.tradeOne);
+									Dealer.unselectCard();
 									Dealer.unselectCard(obj);
 									Dealer.tradeOne = null;
 									Dealer.tradeOp = 0;
@@ -616,13 +627,13 @@ window.onload = function() {
 			holder.fixZorder();
 		var hand   = new Hand(createSlots(1,6,-3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
-		deck.giveHand();
+		// deck.giveHand();
 		var trinca = new Trinca(createSlots(1,3,-6, 0));
 		window._trinca = trinca;
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
 		/*for(var i=0;i<6;i++){
-			//deck.giveCard(holder);
+			//#.giveCard(holder);
 		}*/
 		$("#enchant-stage").css("display","inline");
     };
