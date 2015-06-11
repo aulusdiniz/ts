@@ -12,6 +12,8 @@ function commentAndVote(vote) {
       console.log($('textarea#comment_vote').val());
       console.log(vote);
       console.log('comentário publicado com sucesso!');
+      // window.location = window.location.protocol + '//' + window.location.hostname+ ':8080' + '/profile';
+      // window.history(0);
     },
     error : function(e){
       console.log($('input#userId').val());
