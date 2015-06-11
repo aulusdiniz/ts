@@ -46,6 +46,11 @@ module.exports = function(app) {
 		res.render('info_start');
 	});
 
+	// page how to play
+	app.get('/how_to_play', function(req, res) {
+		res.render('how_to_play');
+	});
+
 // logged-in user homepage //
 
 	app.get('/home', function(req, res) {
