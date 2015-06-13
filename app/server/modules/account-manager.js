@@ -67,16 +67,12 @@ exports.getAllTrincaUser = function(data, callback)
 
 exports.findTrincaById = function(id, callback)
 {
-	console.log("aqui é o id da findTrincaByID = " + id);//exist
-
 
 	var id_found = ObjectID.createFromHexString(id);
-	console.log("id_found do findTrincaByID = "+ id_found);//exist
 
 
 
 	trincas.findOne({_id: id_found}, function(e, res) {
-		console.log("id_found do findTrincaByID = "+ id_found);
  		if(e)
 		{
 			callback(e);
