@@ -64,7 +64,15 @@ exports.getAllTrincaRecords = function(callback)
 	trincas.find().sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
-		else callback(null, res)
+		else {
+			var ind = 0;
+			for(ind = 0; ind < res.length; ind++){
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
+				var b = a;
+				res[ind].date = moment(b).startOf('day').fromNow();
+			}
+			callback(null, res);
+		}
 	});
 }
 
@@ -73,7 +81,14 @@ exports.getAllTrincaUser = function(data, callback)
 	trincas.find({user:data.user}).sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
-		else callback(null, res)
+		else{
+			for(ind = 0; ind < res.length; ind++){
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
+				var b = a;
+				res[ind].date = moment(b).startOf('day').fromNow();
+			}
+		callback(null, res);
+		}
 	});
 }
 
