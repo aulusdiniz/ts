@@ -3,7 +3,7 @@ function commentAndVote(vote) {
     url: '/voting/:id',
     type: 'POST',
     data: {
-      user_guest: $('input#userId').val(),
+      user_guest: $('input#userId').val(), //TODO fix
       comment: $('textarea#comment_vote').val(),
       vote: vote
     },

@@ -33,11 +33,23 @@ exports.commentTrinca = function(newData, callback){
 exports.findVotesByTrinca = function(id, callback){
 	// var id_found = ObjectID.createFromHexString(id);
 // try without _id: id_found ==>> {trinca_id: {_id: id_found}}
-	votes.find({"trinca_id._id":""+id}).sort({ $natural : -1 }).toArray(
-		function(e, res) {
-			if (e) callback(e)
-			else callback(res)
-		});
+
+	try{
+		var id_found = ObjectID.createFromHexString(id);
+		votes.find({"trinca_id._id": id_found}).sort({ $natural : -1 }).toArray(
+			function(e, res) {
+				if (e) callback(e)
+				else callback(res)
+			});
+	}catch(e){
+		console.log("findVotesByTrinca FAILED! :> " + e);
+		var id_found = id;
+		votes.find({"trinca_id._id": id_found}).sort({ $natural : -1 }).toArray(
+			function(e, res) {
+				if (e) callback(e)
+				else callback(res)
+			});
+	}
 }
 
 exports.publishTrinca = function(newData, callback){
@@ -52,7 +64,15 @@ exports.getAllTrincaRecords = function(callback)
 	trincas.find().sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
-		else callback(null, res)
+		else {
+			var ind = 0;
+			for(ind = 0; ind < res.length; ind++){
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
+				var b = a;
+				res[ind].date = moment(b).startOf('day').fromNow();
+			}
+			callback(null, res);
+		}
 	});
 }
 
@@ -61,29 +81,34 @@ exports.getAllTrincaUser = function(data, callback)
 	trincas.find({user:data.user}).sort({ $natural : -1 }).toArray(
 		function(e, res) {
 		if (e) callback(e)
-		else callback(null, res)
+		else{
+			for(ind = 0; ind < res.length; ind++){
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
+				var b = a;
+				res[ind].date = moment(b).startOf('day').fromNow();
+			}
+		callback(null, res);
+		}
 	});
 }
 
 exports.findTrincaById = function(id, callback)
 {
-	console.log("aqui é o id da findTrincaByID = " + id);//exist
-
-
-	var id_found = ObjectID.createFromHexString(id);
-	console.log("id_found do findTrincaByID = "+ id_found);//exist
-
-
+	try{
+		var id_found = ObjectID.createFromHexString(id);
+	}catch(e){
+		console.log("findTrincaById FAILED! :> " + e);
+		var id_found = id;
+	}
 
 	trincas.findOne({_id: id_found}, function(e, res) {
-		console.log("id_found do findTrincaByID = "+ id_found);
- 		if(e)
+ 		if(res)
 		{
-			callback(e);
+			callback(res);
 		}
 		else
 		{
-			callback(res);
+			callback(e);
 		}
 	});
 }

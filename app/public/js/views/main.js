@@ -98,7 +98,7 @@ window.onload = function() {
 	var spacing_hor = 10;
 	var spacing_ver = -sprite_width/3;
 	var desl_hor = 70;
-	var desl_ver = 90;
+	var desl_ver = 50;
 
 		//carrega as imagens necessárias na hora que o jogo liga, disponibiliza em game.assets(['../imgs/cards/s001.png']);
     	game.preload(
@@ -623,7 +623,7 @@ window.onload = function() {
 
 		//!!! Esta ordem precisa ser conservada. !!!
 		//os argumentos de createSlots se refere a linha que a carta será posicionada e o tipo de slot;
-		var holder = new Holder(createSlots(3,6,0,2));
+		var holder = new Holder(createSlots(2,6,0,2));
 			holder.fixZorder();
 		var hand   = new Hand(createSlots(1,6,-3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
