@@ -261,7 +261,7 @@ module.exports = function(app) {
 	// 		});
 	// 	}
 	// });
-
+ var trinca_f = 0;
 	app.get('/voting/:id', function(req, res) {
 		if (req.session.user == null){
 			// if user is not logged-in redirect back to login page //
@@ -277,17 +277,18 @@ module.exports = function(app) {
 					if(trinca_ids)
 					{
 						trinca_id_found = trinca_ids;
+						this.trinca_f = trinca_ids;
 					}
 					console.log("≈√trinca_id_found = ");
-					console.log(trinca_id_found);
+					console.log(this.trinca_f);
 
-					AM.findVotesByTrinca(trinca_id_found._id, function(votes){
+					AM.findVotesByTrinca(this.trinca_f._id+"", function(votes){
 						console.log("≈√votes");
 						console.log(votes);
 
 						res.render('trinca_voting', {
 							title : 'Trinca Social - Votação',
-							tdata: trinca_id_found,
+							tdata: this.trinca_f,
 							udata: req.session.user,
 							tvotes: votes
 						});
@@ -313,11 +314,11 @@ module.exports = function(app) {
 		// });
 
 		AM.commentTrinca({
-			//TO-DO req.param('user') is returning null, need to get the right value from the page.
+			//TODO req.param('user') is returning null, need to get the right value from the page.
 				user_guest: req.param('user'),
 				comment: req.param('comment'),
 				vote: req.param('vote'),
-				trinca_id: req.cookies.trinca_id
+				trinca_id: this.trinca_f
 			},
 			function(){
 				// res.cookie('tr_id', req.params.id, {maxAge: 900000});
@@ -325,14 +326,15 @@ module.exports = function(app) {
 				if (o != null){
 					req.session.user = o;
 
-					AM.findVotesByTrinca(req.cookies.trinca_id._id, function(votes){
-						res.render('trinca_voting', {
-							title : 'Trinca Social - Votação',
-							tdata: req.cookies.trinca_id,
-							udata: req.cookies.user,
-							tvotes: votes
+						AM.findVotesByTrinca(this.trinca_f._id, function(votes){
+							console.log(votes);
+							res.render('trinca_voting', {
+								title : 'Trinca Social - Votação',
+								tdata: this.trinca_f,
+								udata: req.cookies.user,
+								tvotes: votes
+							});
 						});
-					});
 				}
 				else{
 					res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
@@ -492,7 +494,7 @@ module.exports = function(app) {
 	app.get('/print_comments', function(req, res) {
 		if(req.session.trid){
 			console.log(req.session.trid);
-			AM.findTrincaById( req.session.trid, function(e, trinca){
+			AM.findTrincaById( req.session.trid, function(trinca){
 				res.render('print_comments', {
 					title : 'Trinca Social - Votação (comentários)',
 					trcs	: trinca,

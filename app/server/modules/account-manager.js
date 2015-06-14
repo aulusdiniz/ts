@@ -33,11 +33,23 @@ exports.commentTrinca = function(newData, callback){
 exports.findVotesByTrinca = function(id, callback){
 	// var id_found = ObjectID.createFromHexString(id);
 // try without _id: id_found ==>> {trinca_id: {_id: id_found}}
-	votes.find({"trinca_id._id":""+id}).sort({ $natural : -1 }).toArray(
-		function(e, res) {
-			if (e) callback(e)
-			else callback(res)
-		});
+
+	try{
+		var id_found = ObjectID.createFromHexString(id);
+		votes.find({"trinca_id._id": id_found}).sort({ $natural : -1 }).toArray(
+			function(e, res) {
+				if (e) callback(e)
+				else callback(res)
+			});
+	}catch(e){
+		console.log("findVotesByTrinca FAILED! :> " + e);
+		var id_found = id;
+		votes.find({"trinca_id._id": id_found}).sort({ $natural : -1 }).toArray(
+			function(e, res) {
+				if (e) callback(e)
+				else callback(res)
+			});
+	}
 }
 
 exports.publishTrinca = function(newData, callback){
@@ -67,19 +79,21 @@ exports.getAllTrincaUser = function(data, callback)
 
 exports.findTrincaById = function(id, callback)
 {
-
-	var id_found = ObjectID.createFromHexString(id);
-
-
+	try{
+		var id_found = ObjectID.createFromHexString(id);
+	}catch(e){
+		console.log("findTrincaById FAILED! :> " + e);
+		var id_found = id;
+	}
 
 	trincas.findOne({_id: id_found}, function(e, res) {
- 		if(e)
+ 		if(res)
 		{
-			callback(e);
+			callback(res);
 		}
 		else
 		{
-			callback(res);
+			callback(e);
 		}
 	});
 }

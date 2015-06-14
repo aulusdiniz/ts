@@ -98,7 +98,7 @@ window.onload = function() {
 	var spacing_hor = 10;
 	var spacing_ver = -sprite_width/3;
 	var desl_hor = 70;
-	var desl_ver = 90;
+	var desl_ver = 50;
 
 		//carrega as imagens necessárias na hora que o jogo liga, disponibiliza em game.assets(['../imgs/cards/s001.png']);
     	game.preload(
