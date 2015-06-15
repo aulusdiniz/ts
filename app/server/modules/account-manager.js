@@ -32,7 +32,7 @@ exports.commentTrinca = function(newData, callback){
 
 exports.findVotesByTrinca = function(id, callback){
 	// var id_found = ObjectID.createFromHexString(id);
-// try without _id: id_found ==>> {trinca_id: {_id: id_found}}
+	// try without _id: id_found ==>> {trinca_id: {_id: id_found}}
 
 	try{
 		var id_found = ObjectID.createFromHexString(id);
