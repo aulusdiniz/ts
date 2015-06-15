@@ -97,13 +97,15 @@ exports.findTrincaById = function(id, callback)
 	try{
 		var id_found = ObjectID.createFromHexString(id);
 	}catch(e){
-		console.log("findTrincaById FAILED! :> " + e);
 		var id_found = id;
 	}
 
 	trincas.findOne({_id: id_found}, function(e, res) {
  		if(res)
 		{
+			var a = moment(res.date, "MMMM DD YYYY, h:mm:ss a").toArray();
+			var b = a;
+			res.date = moment(b).startOf('second').fromNow();
 			callback(res);
 		}
 		else

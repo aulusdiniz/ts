@@ -216,6 +216,7 @@ module.exports = function(app) {
 // Trinca em votação //
 
  var trinca_f = 0;
+
 	app.get('/voting/:id', function(req, res) {
 		if (req.session.user == null){
 			// if user is not logged-in redirect back to login page //
@@ -275,7 +276,6 @@ module.exports = function(app) {
 					req.session.user = o;
 
 						AM.findVotesByTrinca(this.trinca_f._id, function(votes){
-							console.log(votes);
 							res.render('trinca_voting', {
 								title : 'Trinca Social - Votação',
 								tdata: this.trinca_f,
