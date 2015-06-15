@@ -203,7 +203,8 @@ window.onload = function() {
 			'/img/cards/casa-99.png',
 			'/img/cards/casa-100.png',
 			'/img/cards/slot.png',
-			'/img/cards/deck.png'
+			'/img/cards/deck.png',
+			'/img/cards/deck_last_card.png'
 			);
 
 	//fundo verde, igual ao html;
@@ -212,7 +213,7 @@ window.onload = function() {
 	//Baralho, atualiza os slots do holder
     var Deck = enchant.Class.create(enchant.Sprite, {
       initialize: function(x, y, holder, hand, cards) {
-				enchant.Sprite.call(this, sprite_width, sprite_height);
+				enchant.Sprite.call(this, sprite_width+94, sprite_height+87);
         this.x = x;
         this.y = y;
 				this.scale(sprite_scale,sprite_scale);
@@ -232,8 +233,13 @@ window.onload = function() {
 					target.updateSlots(this.availCards[rand]);
 					this.usedCards.push(this.availCards.slice(rand));
 					this.availCards.splice(rand,1);
-					if(this.availCards.length<1){
-						this.image = game.assets['/img/cards/slot.png'];
+					if(this.availCards.length < 2){
+						this.image = game.assets['/img/cards/deck_last_card.png'];
+						this.width = sprite_width;
+						this.height = sprite_height;
+						if(this.availCards.length < 1){
+							this.image = game.assets['/img/cards/slot.png'];
+							}
 						}
 				}
 				}

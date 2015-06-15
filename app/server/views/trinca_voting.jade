@@ -6,6 +6,7 @@ block content
   - var user = typeof(udata) != 'undefined' ? udata : { }
   - var trinca = typeof(tdata) != 'undefined' ? tdata : { }
   - var votes = typeof(tvotes) != 'undefined' ? tvotes : { }
+  - var canVote = typeof(canVote) != 'undefined' ? canVote : { }
   
   div(style='width:auto;display:inline-block;margin-top:35px;margin-left:48vw; margin-bottom:0px;')
     a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trinca em Votação
@@ -25,20 +26,27 @@ block content
           
     div#foot_panel(style='background-color:#0DA85B; height:30px; color:white;')
       if(trinca.user != user.name)
-        img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:6vw;')
-        a#agree(href='javascript:commentAndVote("good");') concordo
-        img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
-        a#disagree(href='javascript:commentAndVote("bad");') discordo
+        if(canVote)
+          img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:6vw;')
+          a#agree(href='javascript:commentAndVote("good");') concordo
+          img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+          a#disagree(href='javascript:commentAndVote("bad");') discordo
+      else
+        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:20vw;')
+        a#comment(href='javascript:commentAndVote("comment");') comentar
+        img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
+        a#report(href='#') denunciar
+
       if(trinca.user == user.name)
         img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:20vw;')
         a#comment(href='javascript:commentAndVote("comment");') comentar
-        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
-        a(href='#') denunciar
+        img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
+        a#report(href='#') denunciar
       else
         img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
         a#comment(href='javascript:commentAndVote("comment");') comentar
-        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
-        a(href='#') denunciar
+        img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
+        a#report(href='#') denunciar
 
     div#comments(style='background-color:#32AD67; overflow-y:scroll; max-height:235px;')
       //- include tile_vote_comment.jade

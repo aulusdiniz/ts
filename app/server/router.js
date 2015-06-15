@@ -215,7 +215,8 @@ module.exports = function(app) {
 
 // Trinca em votação //
 
- var trinca_f = 0;
+	var trinca_f = 0;
+	var voteOp = true;
 
 	app.get('/voting/:id', function(req, res) {
 		if (req.session.user == null){
@@ -241,11 +242,20 @@ module.exports = function(app) {
 						console.log("≈√votes");
 						console.log(votes);
 
+						this.voteOp = true;
+
+						for(k in votes)
+						{
+							if((votes[k].user_guest == req.session.user.user) && (votes[k].vote != "comment")){
+								this.voteOp = false;
+							}
+						}
 						res.render('trinca_voting', {
 							title : 'Trinca Social - Votação',
 							tdata: this.trinca_f,
 							udata: req.session.user,
-							tvotes: votes
+							tvotes: votes,
+							canVote: this.voteOp
 						});
 					});
 
