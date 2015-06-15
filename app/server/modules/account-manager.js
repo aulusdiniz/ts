@@ -69,7 +69,7 @@ exports.getAllTrincaRecords = function(callback)
 			for(ind = 0; ind < res.length; ind++){
 				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
 				var b = a;
-				res[ind].date = moment(b).startOf('day').fromNow();
+				res[ind].date = moment(b).startOf('second').fromNow();
 			}
 			callback(null, res);
 		}
@@ -85,7 +85,7 @@ exports.getAllTrincaUser = function(data, callback)
 			for(ind = 0; ind < res.length; ind++){
 				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
 				var b = a;
-				res[ind].date = moment(b).startOf('day').fromNow();
+				res[ind].date = moment(b).startOf('second').fromNow();
 			}
 		callback(null, res);
 		}

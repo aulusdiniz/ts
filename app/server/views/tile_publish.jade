@@ -10,11 +10,11 @@ mixin tile_publish(i, trinca)
           a(href='#', style='margin-left:40px; text-decoration:none;')= trinca[i].card1
           a(href='#', style='margin-left:90px; text-decoration:none;')= trinca[i].card2
           a(href='#', style='margin-left:95px; text-decoration:none;')= trinca[i].card3
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
+        img#card1(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
         img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+        img#card2(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
         img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px;  px; margin-left:-50px;')
+        img#card3(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px;  px; margin-left:-50px;')
           
       div#foot_panel(style='background-color:#1B9355; margin-left:15px; height:30px; color:white;')
         img(src='../img/people_icon@3x.png', height='30px', width='30px', style='margin-left:30px;')

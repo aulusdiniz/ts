@@ -628,7 +628,7 @@ window.onload = function() {
 		var hand   = new Hand(createSlots(1,6,-3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
 		// deck.giveHand();
-		var trinca = new Trinca(createSlots(1,3,-6, 0));
+		var trinca = new Trinca(createSlots(1,3,-6.3, 0));
 		window._trinca = trinca;
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
