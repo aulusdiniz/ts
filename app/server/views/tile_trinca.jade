@@ -5,18 +5,33 @@ mixin tile_trinca(trinca)
         a(href='#', style='text-decoration:none; color:#FFF;')= trinca.date
       div#top_panel_right(style='background-color:#28B34A; color:#1A441F; height:20px; margin-left:245px; margin-top:-26px; width:auto; padding:4px 2px 2px 125px;')
         a(href='#', style='text-decoration:none; color:#1A441F; font-weight:bold; font-size:15px;')= trinca.user
-      div#inner_panel(style='background-color:#28B34A; margin-left:15px; height:74px;')
-        div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
-          a(href='#', style='margin-left:40px; text-decoration:none;')= trinca.card1
-          a(href='#', style='margin-left:90px; text-decoration:none;')= trinca.card2
-          a(href='#', style='margin-left:95px; text-decoration:none;')= trinca.card3
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
-        img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
-        img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px;  px; margin-left:-50px;')
+      div#inner_panel(style='background-color:#28B34A;margin-top: -2vh; margin-left:15px; height:90px;')
+        //- div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
+          //- a(href='#', style='margin-left:40px; text-decoration:none;')= trinca.card1
+          //- a(href='#', style='margin-left:90px; text-decoration:none;')= trinca.card2
+          //- a(href='#', style='margin-left:95px; text-decoration:none;')= trinca.card3
+        ul(style="margin-left: 0px;")
+          li(style="list-style-type: none; display: inline-block")
+            div(style=" overflow: hidden; height: 80px; width: 120px; margin-top: 0.7vw; margin-left: 1vw;")
+              img( src= "../img/cards/"+trinca.card1+".png") 
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
+          li(style="list-style-type: none; display: inline-block")
+            div(style=" overflow:hidden; height: 80px; width: 120px; margin-top: 0.7vw; margin-left: 1vw;")
+              img( src= "../img/cards/"+trinca.card2+".png")
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
+          li(style="list-style-type: none; display: inline-block")
+            div(style="overflow:hidden; height: 80px; width: 120px; margin-top: 0.7vw; margin-left: 1vw;") 
+              img( src= "../img/cards/"+trinca.card3+".png")  
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
+            
+        
+        //- img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
+        //- img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        //- img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+        //- img(src='../img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        //- img(src='../img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px;  px; margin-left:-50px;')
           
-      div#foot_panel(style='background-color:#1B9355; margin-left:15px; height:30px; color:white;')
+      div#foot_panel(style='background-color:#1B9355; margin-left:15px; ; height:30px; color:white;')
         img(src='../img/people_icon@3x.png', height='30px', width='30px', style='margin-left:30px;')
         a(href='', style='color:white; text-decoration:none;') (14)
         img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:14vw;')

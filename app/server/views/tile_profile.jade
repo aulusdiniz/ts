@@ -6,17 +6,32 @@ mixin tile_profile(index, newData)
         a(href='#', style='text-decoration:none; color:#FFF;')= newData[index].date
       div#top_panel_right(style='background-color:#126CA7; color:#1A441F; height:20px; margin-left:245px; margin-top:-26px; width:auto; padding:4px 2px 2px 125px;')
         a(href='#', style='text-decoration:none; color:#FFF;')= newData[index].user
-      div#inner_panel(style='background-color:#126CA7; margin-left:15px; height:74px;')
-        div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
-          a(href='#', style='margin-left:40px; text-decoration:none;')= newData[index].card1
-          a(href='#', style='margin-left:90px; text-decoration:none;')= newData[index].card2
-          a(href='#', style='margin-left:95px; text-decoration:none;')= newData[index].card3
-        img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
-        img(src='img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
-        img(src='img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
-        img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+      div#inner_panel(style='background-color:#126CA7; margin-left:15px; height:74px; max: width;')
+        //- div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
+        //-   a(href='#', style='margin-left:40px; text-decoration:none;')= newData[index].card1
+        //-   a(href='#', style='margin-left:90px; text-decoration:none;')= newData[index].card2
+        //-   a(href='#', style='margin-left:95px; text-decoration:none;')= newData[index].card3
+        ul(style=" margin-left: 0px;")
+          li(style="list-style-type: none; display: inline-block")
+            div(style=" overflow: hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;")
+              img( src= "../img/cards/"+newData[index].card1+".png") 
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
+          li(style="list-style-type: none; display: inline-block")
+            div(style=" overflow:hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;")
+              img( src= "../img/cards/"+newData[index].card2+".png")
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
+          li(style="list-style-type: none; display: inline-block")
+            div(style="overflow:hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;") 
+              img( src= "../img/cards/"+newData[index].card3+".png")  
+              img(src='../img/arrow@3x.png', height='80px', width='120px')
         
+        
+        //- img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
+        //- img(src='img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        //- img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+        //- img(src='img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
+        //- img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
+        //- 
       div#foot_panel(style='background-color:#64B6E3; margin-left:15px; height:30px; color:white;')
         a(href='#', style='margin-left:20px; color:#FFF;') EDITAR
         a(href='#', style='margin-left:20px; color:#FFF;') EXCLUIR
