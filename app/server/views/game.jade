@@ -3,13 +3,13 @@ extends layout_game
 block content  
   - var user = typeof(udata) != 'undefined' ? udata : { }
   
-  div#user_login(style='position:absolute; font-size:18px; margin:0 50px 0 80vw; ')
+  div#user_login(style='position:absolute; font-size:18px; margin:5vh 50px 0 80vw; ')
     ul(style='list-style:none; margin-left:20px; margin-top: 12cvh; padding:5px 15px 0 0;')
       li
         a(href='', style='color: #6495ED;') Olá #{ user.name }
         input#userref(type="hidden", value=user.user)
       li
-        a(href='', style='color: #6495ED;') Sair
+        a(href='/profile', style='color: #6495ED;') Sair
   
   div#game(style='background-color:#19592D;')
     script(src='/js/views/main.js')
@@ -39,15 +39,15 @@ block content
         //- input#publishJustif(type='button', form='justf') Publicar
         a#publishJustif(href="javascript:publish();", style='padding:5px;') Publicar
     
-  div#menu_game(style='margin:1vw 0 0vw 80vw; position:absolute; top:76%; background-color:#0DA85B;')
-    ul(style='margin:0 0 0 -20px; list-style:none; width:220px; font-size:15px; font-weight:bold;')
+  div#menu_game(style='margin:-5vw 0 0vw 78.5vw; position:absolute; top:76%; background-color:#0DA85B;')
+    ul(style='margin:0 0 0 -20px; list-style:none; width:260px; font-size:18px; font-weight:bold;')
       li(style='margin:10px 0 15px 0;')
         a(href='#', style='color:#175979; ') Trinca Social Atuação CIDADES
       li(style='margin:10px 0 15px 0;')
         a(href='#', style='color:#175979; ') Trincas publicadas (22)
       li(style='margin:10px 0 15px 0;')
         a(href='#', style='color:#175979; ') Minhas trincas (6)
-          ul(style="list-style: none; font-size: 10px; ")
+          ul(style="margin-left: -3.5vw;list-style: none; font-size: 16px; ")
             li(style="margin-top: 1vh;")
               a(href='#', style='color:#175979; ') Trincas aprovadas (4)
             li(style="margin-top: 1vh;")

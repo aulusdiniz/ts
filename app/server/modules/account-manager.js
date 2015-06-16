@@ -32,7 +32,7 @@ exports.commentTrinca = function(newData, callback){
 
 exports.findVotesByTrinca = function(id, callback){
 	// var id_found = ObjectID.createFromHexString(id);
-// try without _id: id_found ==>> {trinca_id: {_id: id_found}}
+	// try without _id: id_found ==>> {trinca_id: {_id: id_found}}
 
 	try{
 		var id_found = ObjectID.createFromHexString(id);
@@ -69,7 +69,7 @@ exports.getAllTrincaRecords = function(callback)
 			for(ind = 0; ind < res.length; ind++){
 				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
 				var b = a;
-				res[ind].date = moment(b).startOf('day').fromNow();
+				res[ind].date = moment(b).startOf('second').fromNow();
 			}
 			callback(null, res);
 		}
@@ -85,7 +85,7 @@ exports.getAllTrincaUser = function(data, callback)
 			for(ind = 0; ind < res.length; ind++){
 				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
 				var b = a;
-				res[ind].date = moment(b).startOf('day').fromNow();
+				res[ind].date = moment(b).startOf('second').fromNow();
 			}
 		callback(null, res);
 		}
@@ -97,13 +97,15 @@ exports.findTrincaById = function(id, callback)
 	try{
 		var id_found = ObjectID.createFromHexString(id);
 	}catch(e){
-		console.log("findTrincaById FAILED! :> " + e);
 		var id_found = id;
 	}
 
 	trincas.findOne({_id: id_found}, function(e, res) {
  		if(res)
 		{
+			var a = moment(res.date, "MMMM DD YYYY, h:mm:ss a").toArray();
+			var b = a;
+			res.date = moment(b).startOf('second').fromNow();
 			callback(res);
 		}
 		else
