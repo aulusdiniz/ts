@@ -631,10 +631,10 @@ window.onload = function() {
 		//os argumentos de createSlots se refere a linha que a carta será posicionada e o tipo de slot;
 		var holder = new Holder(createSlots(2,6,0,2));
 			holder.fixZorder();
-		var hand   = new Hand(createSlots(1,6,-3,1));
+		var hand   = new Hand(createSlots(1,6,-6.3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
 		// deck.giveHand();
-		var trinca = new Trinca(createSlots(1,3,-6.3, 0));
+		var trinca = new Trinca(createSlots(1,3,-3.3, 0));
 		window._trinca = trinca;
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
