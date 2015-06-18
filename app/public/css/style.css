@@ -209,6 +209,7 @@ body {
 #enchant-stage {
   display: inline;
   top: 190px;
+  margin-top: 20px;
 }
 #publish_now_cards {
   display: none;
