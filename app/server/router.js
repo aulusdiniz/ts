@@ -128,7 +128,6 @@ module.exports = function(app) {
 		});
 	});
 
-
 // Profile com tiles //
 
 	app.get('/profile', function(req, res) {
@@ -457,11 +456,11 @@ module.exports = function(app) {
 	    });
 	});
 
-	app.get('/reset', function(req, res) {
-		AM.delAllRecords(function(){
-			res.redirect('/print');
-		});
-	});
+	// app.get('/reset', function(req, res) {
+	// 	AM.delAllRecords(function(){
+	// 		res.redirect('/print');
+	// 	});
+	// });
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Página não encontrada'}); });
 
