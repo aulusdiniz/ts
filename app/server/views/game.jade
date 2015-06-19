@@ -6,10 +6,14 @@ block content
   div#user_login(style='position:absolute; font-size:18px; margin:5vh 50px 0 80vw; ')
     ul(style='list-style:none; margin-left:20px; margin-top: 12cvh; padding:5px 15px 0 0;')
       li
-        a(href='', style='color: #6495ED;') Olá #{ user.name }
+        a(href='', style='color: #6495ED; text-transform: uppercase;') Olá #{ user.name }
         input#userref(type="hidden", value=user.user)
       li
-        a(href='/profile', style='color: #6495ED;') Sair
+        a(href='/profile', style='color: #6495ED; text-transform: uppercase;') Sair
+  
+  div(style="position: absolute; margin: 24vw 0 0 24vw; ")
+    p(style="font-weight: bold; color: white;") Causa do Problema &nbsp;&nbsp;&nbsp;&nbsp; Problema &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Solução do Problema
+  
   
   div#game(style='background-color:#19592D;')
     script(src='/js/views/main.js')
