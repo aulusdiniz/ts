@@ -43,18 +43,18 @@ module.exports = function(app) {
 // start page w/o login //
 
 	app.get('/', function(req, res) {
-		res.render('info_start');
+		res.render('info_start', {title: 'Trinca Social - Inicio'});
 	});
 
 	// page how to play
 	app.get('/how_to_play', function(req, res) {
-		res.render('how_to_play');
+		res.render('how_to_play', {title: 'Trinca Social - Como Jogar'});
 	});
 
 // logged-in user homepage //
 
 	app.get('/home', function(req, res) {
-		res.render('home');
+		res.render('home', {title: 'Trinca Social - Inicio'});
 	});
 
 // Game //
