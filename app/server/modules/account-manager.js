@@ -26,6 +26,59 @@ var trincas = db.collection('trincas');
 
 var votes = db.collection('votes');
 
+// numero de votos positivos para encerrar a trinca.
+var nOkTrincasForAccept = 15;
+
+var setTrincaStatus = function()
+{
+
+}
+
+// 86400000
+setInterval(function()
+{
+	trincas.find().sort({ $natural : -1 }).toArray(
+		function(e, res) {
+		if (e) console.log(e);
+		else {
+			var ind = 0;
+			for(ind = 0; ind < res.length; ind++){
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
+				var b = a;
+
+				if(parseInt(moment(b).startOf('second').fromNow())>2)
+				{
+
+					try{
+						var id_found = ObjectID.createFromHexString(res[ind]._id);
+						votes.find({"trinca_id._id": id_found, "vote":"good"}).toArray(function(e, res){
+							var count = res.length
+							// numero de votos positivos para encerrar a trinca a provada.
+							if(count>this.nOkTrincasForAccept){
+								res[ind].status = "accept";
+								trincas.save(res[ind], {safe: true}, function(){
+								});
+							}
+						});
+
+					}catch(e){
+						var id_found = res[ind]._id;
+						votes.find({"trinca_id._id": id_found, "vote":"good"}).toArray(function(e, res){
+							var count = res.length
+							// numero de votos positivos para encerrar a trinca a provada.
+							if(count>this.nOkTrincasForAccept){
+								res[ind].status = "accept";
+								trincas.save(res[ind], {safe: true}, function(){
+								});
+							}
+						});
+					}
+				}
+			}
+		}
+	});
+}, 5000);
+
 exports.commentTrinca = function(newData, callback){
 	votes.insert(newData, {safe:true}, callback);
 }

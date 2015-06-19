@@ -35,12 +35,6 @@ function next_step(bool){
 
 function publish(){
 	//função ao pressionar o botão de publicar na caixa de dialogo da justificativa.
-	console.log($('input#userref').val());
-	console.log(getCard(0));
-	console.log(getCard(1));
-	console.log(getCard(2));
-	console.log($('textarea#justif').val());
-
 	$.ajax({
 		url: '/game',
 		type: 'POST',
@@ -89,7 +83,7 @@ function publish(){
 }
 
 window.onload = function() {
-    var game = new Game(window.screen.availWidth, window.screen.availHeight-95);
+    var game = new Game(window.screen.availWidth, window.screen.availHeight-65);
 
 	//Escalas
 	var sprite_scale = 3/5;
@@ -98,7 +92,7 @@ window.onload = function() {
 	var spacing_hor = 10;
 	var spacing_ver = -sprite_width/3;
 	var desl_hor = 70;
-	var desl_ver = 50;
+	var desl_ver = 70;
 
 		//carrega as imagens necessárias na hora que o jogo liga, disponibiliza em game.assets(['../imgs/cards/s001.png']);
     	game.preload(
@@ -589,7 +583,7 @@ window.onload = function() {
 						break;
 					}
 					case 2:{
-						content.push(new Slot_holder(desl_hor+pos*(sprite_width+spacing_hor)*sprite_scale,desl_ver+row*spacing_ver))
+						content.push(new Slot_holder(desl_hor+pos*(sprite_width+spacing_hor)*sprite_scale,desl_ver+row*spacing_ver*1.5))
 						break;
 					}
 				}
@@ -631,10 +625,10 @@ window.onload = function() {
 		//os argumentos de createSlots se refere a linha que a carta será posicionada e o tipo de slot;
 		var holder = new Holder(createSlots(2,6,0,2));
 			holder.fixZorder();
-		var hand   = new Hand(createSlots(1,6,-3,1));
+		var hand   = new Hand(createSlots(1,6,-6.3,1));
 		var deck   = new Deck(desl_hor,desl_ver+spacing_ver, holder, hand, cards);
 		// deck.giveHand();
-		var trinca = new Trinca(createSlots(1,3,-6.3, 0));
+		var trinca = new Trinca(createSlots(1,3,-3.3, 0));
 		window._trinca = trinca;
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
