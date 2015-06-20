@@ -10,11 +10,11 @@ $(document).ready(function(){
   var altitude = getURLParameter("altitude");
   var time = getURLParameter("time");
 
-  $("#hello").html("Visor = "+visor+
+  $("#hello").html("<h1>"+"Visor = "+visor+
   "<br> Latitude = "+latitude+
   "<br> Longitude = "+longitude+
   "<br> Altitude = "+altitude+
-  "<br> Time = "+time
+  "<br> Time = "+time+"</h1>"
   );
 
 });
