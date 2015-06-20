@@ -6,6 +6,11 @@ var trinca_id_found = "Not initialized.";
 
 module.exports = function(app) {
 
+	app.get('/demo*', function(req, res){
+		res.render('sis_afa', { title: 'SisAFA - Server' });
+	});
+
+
 // main login page //
 
 	app.get('/login', function(req, res){
