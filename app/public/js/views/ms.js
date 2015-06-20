@@ -11,10 +11,10 @@ $(document).ready(function(){
   var time = getURLParameter("time");
 
   $("#hello").html("Visor = "+visor+
-  "<br> Latitude"+latitude+
-  "<br> Longitude"+longitude+
-  "<br> Altitude"+altitude+
-  "<br> Time"+time
+  "<br> Latitude = "+latitude+
+  "<br> Longitude = "+longitude+
+  "<br> Altitude = "+altitude+
+  "<br> Time = "+time
   );
 
 });
