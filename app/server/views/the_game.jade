@@ -1,35 +1,40 @@
-extends layout
+extends layout_blue
 
 block content
 
-  div
+  div(style=" width: 400px;")
     ul
       li
-        p() O JOGO
+        p(style="color: white;") O JOGO
       li
-        p() Trinca Social é um jogo coletivo que propõe uma rede de diálogos sobre problemas sociais vividos nas cidades.  É um jogo de cartas digitais ou impressas onde o jogador estabelece uma ordem em que relaciona as cartas como CAUSA DO PROBLEMA - PROBLEMA - SOLUÇÃO DO PROBLEMA. 
+        p(style="color: white;") Trinca Social é um jogo coletivo que propõe uma rede de diálogos sobre problemas sociais vividos nas cidades.  É um jogo de cartas digitais ou impressas onde o jogador estabelece uma ordem em que relaciona as cartas como CAUSA DO PROBLEMA - PROBLEMA - SOLUÇÃO DO PROBLEMA. 
           br O jogador cria livremente associações na trinca e publica uma justificativa sobre seu ponto de vista.  A partir daí, diálogos são formados num fórum onde outros jogadores concordam ou discordam das trincas. Trinca Social preza pela formação de uma rede gentil onde ideias e boas ações são geradas na tentativa de encontrar soluções para problemas sociais. 
+    
+  div(style="margin-left: 33vw; width: 400px; margin-top: -18.75vh;")
+    ul  
       li
-        p() OBJETIVO DO JOGO
+        p(style="color: white;") OBJETIVO DO JOGO
       li
-        p() Estimular a reflexão sobre problemas, causas e consequências, tentando encontrar soluções viáveis para problemas sociais.  O jogo possibilita a comunicação para resolução de conflitos entre pessoas de diferentes áreas, idades e culturas, tratando problemas cotidianos numa perspectiva global.   
+        p(style="color: white;") Estimular a reflexão sobre problemas, causas e consequências, tentando encontrar soluções viáveis para problemas sociais.  O jogo possibilita a comunicação para resolução de conflitos entre pessoas de diferentes áreas, idades e culturas, tratando problemas cotidianos numa perspectiva global.   
           br Trinca Social trabalha o senso crítico por meio da reflexão de causas e efeitos, estimulando a capacidade de criação para a resolução de problemas de forma criativa e colaborativa.
+  div(style="margin-left: 70vw; width: 400px; margin-top: -18vh;")
+    ul
       li
-        p() PARTICIPANTES
+        p(style="color: white;") PARTICIPANTES
       li
-        p() Inicialmente, cada jogador formará e publicará individualmente suas trincas. As trincas são justificadas por escrito, são publicadas e entram em votação durante 3 dias.
+        p(style="color: white;") Inicialmente, cada jogador formará e publicará individualmente suas trincas. As trincas são justificadas por escrito, são publicadas e entram em votação durante 3 dias.
           br Durante o período de votação, outros jogadores concordam ou discordam da trinca e diálogos são formados em um fórum de debates. Após o período de votação, os jogadores acumulam méritos e evoluem de fases, sempre tentando resolver problemas sociais. 
           br Caso a trinca não seja votada dentro do prazo de 3 dias, o prazo poderá ser prorrogado por mais 3 dias. O jogo é indicado para pessoas a partir dos 14 anos de idade e preza pelo respeito a opinião alheia.
           br  Seja gentil e divirta-se!
-  
-  img(src= 'img/cards/casa-09.png', style="")
-  img(src= "img/cards/casa-39.png", style="")
-  img(src= "img/cards/casa-98.png", style="")
-  
-  img(src= 'img/cards/casa-49.png', style="")
-  img(src= "img/cards/casa-07.png", style="")
-  img(src= "img/cards/casa-69.png", style="")
-  
+  div(style=" margin-top: 10vh;")
+    img(src= 'img/cards/casa-09.png', style="margin-left: 2vw")
+    img(src= "img/cards/casa-39.png", style="margin-left: 2vw")
+    img(src= "img/cards/casa-98.png", style="margin-left: 2vw")
+    
+    img(src= 'img/cards/casa-49.png', style="margin-left: 2vw")
+    img(src= "img/cards/casa-07.png", style="margin-left: 2vw")
+    img(src= "img/cards/casa-69.png", style="margin-left: 2vw")
+    
   
 include footer
 
