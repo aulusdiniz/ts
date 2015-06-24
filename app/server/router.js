@@ -6,6 +6,11 @@ var trinca_id_found = "Not initialized.";
 
 module.exports = function(app) {
 
+	app.get('/demo*', function(req, res){
+		res.render('sis_afa', { title: 'SisAFA - Server' });
+	});
+
+
 // main login page //
 
 	app.get('/login', function(req, res){
@@ -49,6 +54,11 @@ module.exports = function(app) {
 	// page how to play
 	app.get('/how_to_play', function(req, res) {
 		res.render('how_to_play', {title: 'Trinca Social - Como Jogar'});
+	});
+
+	// page the game
+	app.get('/the_game', function(req, res) {
+		res.render('the_game', {title: 'O jogo'});
 	});
 
 // logged-in user homepage //
@@ -127,7 +137,6 @@ module.exports = function(app) {
 			}
 		});
 	});
-
 
 // Profile com tiles //
 
@@ -457,11 +466,11 @@ module.exports = function(app) {
 	    });
 	});
 
-	app.get('/reset', function(req, res) {
-		AM.delAllRecords(function(){
-			res.redirect('/print');
-		});
-	});
+	// app.get('/reset', function(req, res) {
+	// 	AM.delAllRecords(function(){
+	// 		res.redirect('/print');
+	// 	});
+	// });
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Página não encontrada'}); });
 

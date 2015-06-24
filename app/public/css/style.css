@@ -108,16 +108,6 @@ body {
   margin: 1.5px 20px 0 0;
   width: 150px;
 }
-#footer {
-  color: #fff;
-  clear: both;
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
-  background: #000;
-  position: relative;
-  top: 490px;
-  border-top: 1px solid #000;
-}
 #menu_upper_content a {
   display: block;
   text-align: center;
