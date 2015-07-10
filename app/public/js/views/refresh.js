@@ -1,1 +1,1 @@
-var myVar = window.setInterval(function(){location.reload()}, 30000);
+var myVar = window.setInterval(function(){location.reload()}, 120000);

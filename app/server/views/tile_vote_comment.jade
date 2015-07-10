@@ -1,10 +1,11 @@
 mixin tile_vote_comment(i, vote)
   div(style='background-color:#91D0AD; margin-bottom:2px; display:block;')
-    - if (vote[i].vote == "good")
-        img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin:25px 0 0 10px;')
-    - if (vote[i].vote == "bad")    
-        img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin:25px 0 0 10px;')
-    - if (vote[i].vote == "comment")    
-        img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin:25px 0 0 10px;')
-    div(style='margin:-50px 0 0 50px; max-width:420px;')
-      textarea(style='background-color:#91D0AD; font-size:13px; text-align:justify; width:98%; height:55px; overflow-y:hidden; padding-right:0px; border:none;')= vote[i].comment
+    if (vote[i].vote == "good")
+      img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin:0px 0 0 10px;')
+    else if (vote[i].vote == "bad")    
+      img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin:0px 0 0 10px;')
+    else if (vote[i].vote == "comment")    
+      img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin:0px 0 0 10px;')
+    a(style="margin:2px 0 0 10px; color:white;")= vote[i].user_guest
+    div(style='margin:0px 0 0 10px; max-width:440px;')
+      textarea(style='background-color:#91D0AD; font-size:13px; text-align:justify; width:100%; height:55px; overflow-y:hidden; padding-right:0px; border:none;')= vote[i].comment
