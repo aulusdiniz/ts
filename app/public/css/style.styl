@@ -96,7 +96,7 @@ body
     position: relative;
   }
   width:100vw;
-	min-width: 1400px;
+	min-width: 640px;
   height:190px;
   background-color:#fff;
   text-decoration:none;
@@ -111,6 +111,7 @@ body
 
 #menu_upper_box {
   float:right;
+	z-index: 10;
   margin:1.5px 20px 0 0;
   width:150px;
 }
@@ -167,7 +168,7 @@ body
 
 #menu {
   width:100vw;
-	min-width: 1400px;
+	min-width: 640px;
   text-align:center;
   height:41px;
   background-color:#17B;
@@ -222,14 +223,13 @@ body
 
 #footer {
 	position:relative;
-	padding-left:30px;
-	width:98.3%;
-	text-align:center;
-	height:41px;
+	width: 100vw;
+	min-width: 640px;
+	text-align: center;
+	height: 41px;
 	background-color:#1B9455;
 	//margin: 14% 0 0 0;
 	//top:88.1vh;
-
 	a {
 		display:inline-block;
 		text-decoration:none;
@@ -240,6 +240,12 @@ body
 		width:auto;
 		height:auto;
 	}
+}
+#rules_box {
+	display: inline-block;
+	justify-content: center;
+	max-width: 600px;
+	min-width: 300px;
 }
 
 // Game //
