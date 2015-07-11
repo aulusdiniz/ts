@@ -1,5 +1,8 @@
 function deleteCookies()
 {
+  document.cookie = "";
+  $('#menu_upper_logged').hide();
+  $('#menu_upper_content').show();
   console.log(document.cookie);
   var allcookies = document.cookie.split(";");
 
@@ -19,11 +22,15 @@ function checkLogin()
   for (var i = 0; i < allcookies.length; i++) {
       var cookie = allcookies[i];
       var eqPos = cookie.indexOf("=");
-      console.log(cookie.substr(++eqPos));
-      if (cookie.substr(eqPos+1,eqPos+1)!=";"){
-        console.log(name);
-        alert(name);
+      var fPos = cookie.indexOf(";");
+      console.log(cookie);
+      console.log(cookie[eqPos+1]);
+      if (cookie[eqPos+1]!=";" && cookie[eqPos+1]!=undefined){
+        $('#menu_upper_logged').show();
+        $('#menu_upper_content').hide();
         return true;
+      }else{
+        return false;
       }
   }
 }
@@ -31,4 +38,5 @@ function checkLogin()
 $(document).ready(function()
 {
   checkLogin();
+  $('#sair_btn').click(function(){ deleteCookies(); });
 });

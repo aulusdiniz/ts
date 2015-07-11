@@ -5,7 +5,8 @@ html
 		link(rel='stylesheet', href='/vendor/bootstrap/css/bootstrap.min.css')
 		link(rel='stylesheet', href='/css/style.css')
 		script(src='/vendor/enchant.js-builds-0.8.1/build/enchant.js')
-		script(src='/vendor/jquery-1.11.1.js')
+		script(src='../vendor/jquery-1.11.1.js')
+		script(src="../../js/views/logout.js")	
 
 	body
 		- var user = typeof(udata) != 'undefined' ? udata : { }
@@ -16,8 +17,11 @@ html
 					img(style='left:50%; margin-left: -241px; z-index:0;', src='/img/banner-cards.jpg', height='151', width='482')
 					#menu_upper_box
 						#menu_upper_content
-	            a(href='/signup') Cadastre-se
-	            a(href='/login') Entrar
+							a(href='/signup') Cadastre-se
+							a(href='/login') Entrar
+						#menu_upper_logged
+							a#sair_btn(href='/logout') Sair
+
 				#menu
 					a(href='/the_game') O Jogo
 					a(href='/how_to_play') Como Jogar

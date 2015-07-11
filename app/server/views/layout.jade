@@ -5,6 +5,7 @@ html
 		link(rel='stylesheet', href='/vendor/bootstrap.min.css')
 		link(rel='stylesheet', href='/css/style.css')
 		script(src='../vendor/jquery-1.11.1.js')
+		script(src="../../js/views/logout.js")	
 	body(style="background:#19592D;")		
 		#header
 			a(href='/')
@@ -14,6 +15,9 @@ html
 				#menu_upper_content
 					a(href='/signup') Cadastre-se
 					a(href='/login') Entrar
+					a(href='/game') Jogar Agora
+				#menu_upper_logged
+					a#sair_btn(href='/logout') Sair
 					a(href='/game') Jogar Agora
 						
 		#menu
@@ -40,4 +44,3 @@ html
 	//- 		|
 	//- 		a(href='') Contato
 	block scripts
-		script(src="../../js/views/logout.js")
