@@ -311,6 +311,14 @@ module.exports = function(app) {
 			});
 	});
 
+	// LOGOUT //
+
+		app.get('/logout', function(req, res) {
+			req.session.destroy(function () {
+				res.redirect('/');
+			});
+		});
+
 // Control panel //
 
 	app.get('/acc-config', function(req, res) {

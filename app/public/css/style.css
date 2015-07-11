@@ -89,7 +89,8 @@ body {
   margin: -200px 0 0 -150px;
 }
 #header {
-  width: 100%;
+  width: 100vw;
+  min-width: 1400px;
   height: 190px;
   background-color: #fff;
   text-decoration: none;
@@ -124,12 +125,14 @@ body {
 #menu_upper_content a:hover {
   color: #06f;
   padding-right: 10px;
+  min-padding-top: 10px;
   padding-bottom: 10px;
   padding-top: 10px;
   background-color: #f4b718;
 }
 #menu {
-  width: 100%;
+  width: 100vw;
+  min-width: 1400px;
   text-align: center;
   height: 41px;
   background-color: #17b;

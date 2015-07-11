@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 				if(window.location.href == '/profile')
 					window.location.href = '/profile';
-
+					window.hadLogin = true;
 				window.location.reload();
 			}
 		},
