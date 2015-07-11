@@ -46,7 +46,7 @@ setInterval(function()
 				var value = parseInt(time[0]);
 
 
-				if(value>2 && unitMesure=="days")
+				if(value>3 && unitMesure=="days")
 				{
 					console.log("Avaliando trinca expirada..");
 					console.log(res[ind]);

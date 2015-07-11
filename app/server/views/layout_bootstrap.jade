@@ -5,7 +5,10 @@ html
 		link(rel='stylesheet', href='/vendor/bootstrap/css/bootstrap.min.css')
 		//- link(rel='stylesheet', href='/vendor/bootstrap.min.css')
 		link(rel='stylesheet', href='/css/style.css')
+		script(src='../vendor/jquery-1.11.1.js')
+		script(src="../../js/views/logout.js")		
 	body(style="background:#19592D;")
+		
 		#header
 			a(href='/')
 				img(style='position:absolute; margin-left:150px;', src='/img/logo-mini.jpg', height='151', width='180')
@@ -14,6 +17,9 @@ html
 				#menu_upper_content
 					a(href='/signup') Cadastre-se
 					a(href='/login') Entrar
+					a(href='/game') Jogar Agora
+				#menu_upper_logged
+					a#sair_btn(href='/logout') Sair
 					a(href='/game') Jogar Agora
 		#menu
 			a(href='/the_game') O Jogo
