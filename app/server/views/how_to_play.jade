@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  div(style="margin: 0 0 0 2vw; display: inline-block; text-align: center;")  
-    div(style="margin: 100px 100px 0 2vw; display: inline-block; width: 550px; height: 600px;")
-      div#menu_body(style="display: inline-block; background-color: black; text-align: justify; font-size: 20px; font-weight: bold; height:100px; width:190px; margin: 0 0 50px 100px;")
+  div(style="margin: auto; text-align: center;")  
+    div(style="float: left; margin: 200px 50px 0 2vw; display: block; width: 550px; height: 600px;")
+      div#menu_body(style="text-align: justify; font-size: 20px; font-weight: bold; height:100px; width:190px; margin: 0 0 50px 300px;")
           ul
             li
               a(href='') Manual
@@ -15,7 +15,7 @@ block content
       div(style="height:300px; width:450px; margin: 200px 0 100px 0;")
         img(src='img/sample_game.png', style="margin: 0 20px 0 60px;")
       
-    div#rules_box(style="background-color: #1B9355; margin: 100px 0 50px 100px;	text-align: justify; padding-right: 1vw; width: 600px;")
+    div#rules_box(style="float: right; background-color: #1B9355; margin: 100px 0 50px 0;	text-align: justify; padding-right: 1vw; width: 600px;")
       p(style="color: #f4b718; font-size: 15px; text-transform: uppercase; font-weight: bold; margin-left: 470px; margin-right: 20px; margin-top: 20px; padding-top: 1vw;") Como Jogar
       ol(style="padding-left: 1vw;")
         li(style="  color: white;font-size: 20px; margin-top:  20px; margin-left:15px;")
@@ -45,7 +45,7 @@ block content
         li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px; padding-bottom: 10px;")
           p(style="font-size: 15px;") Bom jogo e agradecemos a colaboração para um mundo melhor!
                   
-  div(style="	text-align: justify; text-justify: inter-word; border: 1px solid blue ; border-left-style: none; background-color: #f4b718; height:100px; width: 450px; margin: 0 0 10px 0; padding-top: 2vw; padding-bottom: 1vw;")
+  div(style="	text-align: justify; border: 1px solid blue ; border-left-style: none; background-color: #f4b718; height:100px; width: 450px; margin: 1000px 0 10px 0; padding-top: 2vw; padding-bottom: 1vw;")
     p(style="padding-left: 4vw; font-weight: bold; font-size: 15px; ") ACORDOS DO JOGO
     p(style="padding-left: 4vw; padding-right: 2vw; text-align: left;") Este jogo preza pela atuação positiva entre as pessoas e ações gentis no mundo e não permitirá agressões verbais ou termos que violam a moral
   
