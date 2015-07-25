@@ -110,6 +110,30 @@ body {
   margin: 1.5px 20px 0 0;
   width: 150px;
 }
+#menu_upper_logged {
+  display: none;
+}
+#menu_upper_logged a {
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  text-decoration: none;
+  padding: 10px 10px 10px 10px;
+  margin: 1px 0 1px 0;
+  color: #006ba6;
+  background-color: #fff;
+  font-size: 17px;
+  border: 2px solid #006ba6;
+  border-radius: 30px;
+}
+#menu_upper_logged a:hover {
+  color: #06f;
+  padding-right: 10px;
+  min-padding-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #f4b718;
+}
 #menu_upper_content a {
   display: block;
   text-align: center;
@@ -200,7 +224,6 @@ body {
 #rules_box {
   display: inline-block;
   justify-content: center;
-  max-width: 600px;
   min-width: 300px;
 }
 #game {
