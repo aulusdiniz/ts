@@ -56,6 +56,10 @@ module.exports = function(app) {
 		res.render('how_to_play', {title: 'Trinca Social - Como Jogar'});
 	});
 
+	app.get('/rede_gentil', function(req, res) {
+		res.render('rede_gentil', {title: 'Rede Gentil'});
+	});
+
 	// page the game
 	app.get('/the_game', function(req, res) {
 		res.render('the_game', {title: 'O jogo'});

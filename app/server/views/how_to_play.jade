@@ -1,9 +1,13 @@
 extends layout
 
 block content
-  div(style="margin: 0 0 0 2vw; display: inline-block; text-align: center;")  
-    div(style="margin: 100px 100px 0 2vw; display: inline-block; width: 550px; height: 600px;")
-      div#menu_body(style="display: inline-block; background-color: black; text-align: justify; font-size: 20px; font-weight: bold; height:100px; width:190px; margin: 0 0 50px 100px;")
+  div(style="margin-left: auto; display: inline-block; text-align: center;")  
+    div(style="margin: 50px 40px 0 0; display: inline-block; float: left; width: 550px; height: 800px;")
+      
+      div(style="height:300px; width:450px; margin: 0 0 100px 0;")
+        img(src='img/sample_game.png', style="margin: 0 20px 0 60px;")
+      
+      div#menu_body(style="display: inline-block; background-color: none; text-align: justify; font-size: 20px; font-weight: bold; height:100px; width:190px; margin: 0 0 50px 320px;")
           ul
             li
               a(href='') Manual
@@ -11,55 +15,54 @@ block content
               a(href='') Acordos do Jogo
             li(style="margin-top: 10px; padding-top: 10px;")  
               a(href='') Assista o video
+              
+      div(style="display: inline-block; float: left;	text-align: justify; text-justify: inter-word; border: 1px solid blue ; border-left-style: none; background-color: #f4b718; height:100px; width: 450px; margin: 0 0 10px 0; padding-top: 2vw; padding-bottom: 1vw;")
+        p(style="padding-left: 4vw; font-weight: bold; font-size: 15px; ") ACORDOS DO JOGO
+        p(style="padding-left: 4vw; padding-right: 2vw; text-align: left;") Este jogo preza pela atuação positiva entre as pessoas e ações gentis no mundo e não permitirá agressões verbais ou termos que violam a moral
       
-      div(style="height:300px; width:450px; margin: 200px 0 100px 0;")
-        img(src='img/sample_game.png', style="margin: 0 20px 0 60px;")
-      
-    div#rules_box(style="background-color: #1B9355; margin: 100px 0 50px 100px;	text-align: justify; padding-right: 1vw; width: 600px;")
-      p(style="color: #f4b718; font-size: 15px; text-transform: uppercase; font-weight: bold; margin-left: 470px; margin-right: 20px; margin-top: 20px; padding-top: 1vw;") Como Jogar
-      ol(style="padding-left: 1vw;")
-        li(style="  color: white;font-size: 20px; margin-top:  20px; margin-left:15px;")
-          p(style="font-size: 15px;")  Faça seu cadastro no site do jogo, criando seu perfil;   
-        li(style="  color: white;font-size: 20px; margin-top:  20px; margin-left:15px;")
-          p(style="font-size: 15px;") Clique em ENTRAR ou JOGAR AGORA para começar um novo jogo.;
-        li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Ao iniciar o jogo, você receberá 6 cartas para completar duas TRINCAS (conjunto de 3 cartas), com uma sequência de “CAUSA DO PROBLEMA – PROBLEMA – SOLUÇÃO DO PROBLEMA”, sobre situações que ocorrem na Sociedade;
-        li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Você poderá clicar no monte para comprar novas cartas até que encontre associações entre problemas, causas e soluções. Para comprar uma carta, você precisa clicar nela e na carta que você irá substituir.
-        li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Você também poderá comprar cartas descartadas anteriormente, basta clicar na carta escolhida e clicar na carta que irá trocar. Estas ações poderão ser repetidas várias vezes até que você encontre relações entre elas na lógica do jogo;
-        li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Quando a TRINCA é formada, clique nas cartas  e aponte-as para o campo de trincas;
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Justifique por escrito a relação entre as cartas utilizando, se possível, as mesmas palavras das cartas. Caso você prefira usar diferentes palavras relacione-a com a carta. Obs. -  As cartas em branco são curingas no jogo e poderão ser dispostas na trinca como você convir, basta criar um novo termo que se relacione a ela;
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;")  Após a justificativa, releia e confirme para a publicação da mesma na rede ou retorne e edite novamente caso queira deixá-la ainda mais clara para o público;
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") A trinca será publicada na rede e estará disponível na página MINHAS TRINCAS ou em TRINCAS PUBLICADAS e ficará em votação durante 3 dias. Acompanhe as discussões e comente com outros jogadores argumentando seu ponto de vista. Os jogadores participantes poderão concordar ou discordar com sua trinca durante o período que poderá ser prorrogado caso não haja o mínimo de 3 votos. Clique em VER COMENTÁRIOS e vote também em outras trincas; 
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Faça quantas trincas quiser e publique -as na rede. Após 10 trincas aprovadas, a sua área de atuação poderá ser expandida, ou seja, comece resolvendo os problemas que geralmente acontecem em CASA, depois ESCOLA,  TRABALHO, RUA, BAIRRO, CIDADE, PAIS, até que finalmente você resolva problemas do MUNDO!  
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Após algumas fases ultrapassadas,  você receberá orientações para criar uma ação a ser desempenhada no jogo ou em sua vida; 
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
-          p(style="font-size: 15px;") Colabore gentilmente com suas ideias e participe de dialogos construtivos respeitando a opinião de outros jogadores. Caso se sinta ofendido ou encontre alguma publicação imoral, denuncie ao lado do comentário publicado. 
-        li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px; padding-bottom: 10px;")
-          p(style="font-size: 15px;") Bom jogo e agradecemos a colaboração para um mundo melhor!
-                  
-  div(style="	text-align: justify; text-justify: inter-word; border: 1px solid blue ; border-left-style: none; background-color: #f4b718; height:100px; width: 450px; margin: 0 0 10px 0; padding-top: 2vw; padding-bottom: 1vw;")
-    p(style="padding-left: 4vw; font-weight: bold; font-size: 15px; ") ACORDOS DO JOGO
-    p(style="padding-left: 4vw; padding-right: 2vw; text-align: left;") Este jogo preza pela atuação positiva entre as pessoas e ações gentis no mundo e não permitirá agressões verbais ou termos que violam a moral
-  
-  div#rules_box(style="text-align: justify; text-justify: inter-word; background-color: #1B9355; height:215px; margin-right: 0px; float: right; min-width: 390px;")
-    p(style="font-weight: bold; font-size: 15px; color: white; padding-left: 1vw; padding-top: 1vw;") Observações:
-    p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Observações: Este é um jogo de refexão que pode ter inúmeras variantes de “CAUSA DO PROBLEMA - PROBLEMA - SOLUÇÃO DO PROBLEMA”, de acordo com o ponto de vista de cada jogador e do grupo.
-    p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Defenda suas ideias, use diferentes argumentos, ouça a opinião do outro e não tema se outro jogador te convencer a olhar sobre um outro ponto de vista. O importante é encontrarmos juntos a solução!
-    p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Colabore com sua opinião. Agradecemos a gentileza.
-  
-  div(style="display: inline-block; text-align: center; margin: 0 0 100px 0;")    
-    img(src= 'img/cards/casa-09.png', style="margin: 8vw 0 2vw 5vw;")
-    img(src= "img/cards/casa-39.png", style="margin: 8vw 0 2vw 5vw;")
-    img(src= "img/cards/casa-98.png", style="margin: 8vw 0 2vw 5vw;")
-    p(style="text-align: justify; width: 450px; color: white; margin: 0 0 0 45vw; ") A carta em branco é um coringa e pode ser posiocionada onde o jogador desejar e será relacionado a situação escolhida pelo mesmo.
+      div(style="height: 300px; width: 600px; display: inline-block; text-align: center; margin: 130px 0 0 0;")    
+        img(src= 'img/cards/casa-09.png', style="margin: 0 0 0 0;")
+        img(src= "img/cards/casa-39.png", style="margin: 0 0 0 10px;")
+        img(src= "img/cards/casa-98.png", style="margin: 0 0 0 10px;")
+    
+    div(style="float: right; display: inline-block; margin: 0 0 0 0;")
+      div#rules_box(style="background-color: #1B9355; margin: 50px 0 50px 0;	text-align: justify; padding-right: 1vw; width: 600px;")
+        p(style="color: #f4b718; font-size: 15px; text-transform: uppercase; font-weight: bold; margin-left: 470px; margin-right: 20px; margin-top: 20px; padding-top: 1vw;") Como Jogar
+        ol(style="padding-left: 1vw;")
+          li(style="  color: white;font-size: 20px; margin-top:  20px; margin-left:15px;")
+            p(style="font-size: 15px;")  Faça seu cadastro no site do jogo, criando seu perfil;   
+          li(style="  color: white;font-size: 20px; margin-top:  20px; margin-left:15px;")
+            p(style="font-size: 15px;") Clique em ENTRAR ou JOGAR AGORA para começar um novo jogo.;
+          li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Ao iniciar o jogo, você receberá 6 cartas para completar duas TRINCAS (conjunto de 3 cartas), com uma sequência de “CAUSA DO PROBLEMA – PROBLEMA – SOLUÇÃO DO PROBLEMA”, sobre situações que ocorrem na Sociedade;
+          li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Você poderá clicar no monte para comprar novas cartas até que encontre associações entre problemas, causas e soluções. Para comprar uma carta, você precisa clicar nela e na carta que você irá substituir.
+          li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Você também poderá comprar cartas descartadas anteriormente, basta clicar na carta escolhida e clicar na carta que irá trocar. Estas ações poderão ser repetidas várias vezes até que você encontre relações entre elas na lógica do jogo;
+          li(style="  color: white;font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Quando a TRINCA é formada, clique nas cartas  e aponte-as para o campo de trincas;
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Justifique por escrito a relação entre as cartas utilizando, se possível, as mesmas palavras das cartas. Caso você prefira usar diferentes palavras relacione-a com a carta. Obs. -  As cartas em branco são curingas no jogo e poderão ser dispostas na trinca como você convir, basta criar um novo termo que se relacione a ela;
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;")  Após a justificativa, releia e confirme para a publicação da mesma na rede ou retorne e edite novamente caso queira deixá-la ainda mais clara para o público;
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") A trinca será publicada na rede e estará disponível na página MINHAS TRINCAS ou em TRINCAS PUBLICADAS e ficará em votação durante 3 dias. Acompanhe as discussões e comente com outros jogadores argumentando seu ponto de vista. Os jogadores participantes poderão concordar ou discordar com sua trinca durante o período que poderá ser prorrogado caso não haja o mínimo de 3 votos. Clique em VER COMENTÁRIOS e vote também em outras trincas; 
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Faça quantas trincas quiser e publique -as na rede. Após 10 trincas aprovadas, a sua área de atuação poderá ser expandida, ou seja, comece resolvendo os problemas que geralmente acontecem em CASA, depois ESCOLA,  TRABALHO, RUA, BAIRRO, CIDADE, PAIS, até que finalmente você resolva problemas do MUNDO!  
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Após algumas fases ultrapassadas,  você receberá orientações para criar uma ação a ser desempenhada no jogo ou em sua vida; 
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px;")
+            p(style="font-size: 15px;") Colabore gentilmente com suas ideias e participe de dialogos construtivos respeitando a opinião de outros jogadores. Caso se sinta ofendido ou encontre alguma publicação imoral, denuncie ao lado do comentário publicado. 
+          li(style="  color: white; font-size: 20px; margin-top: 20px; margin-left:15px; padding-bottom: 10px;")
+            p(style="font-size: 15px;") Bom jogo e agradecemos a colaboração para um mundo melhor!
+                    
+      p(style="text-align: justify; width: 450px; float: bottom; color: white; margin: 0 0 0 50px; ") A carta em branco é um coringa e pode ser posiocionada onde o jogador desejar e será relacionado a situação escolhida pelo mesmo.
+    
+      div#rules_box(style="text-align: justify; text-justify: inter-word; float: right; background-color: #1B9355; height:215px; width: 450px; margin: 50px 0 40px 0;")
+        p(style="font-weight: bold; font-size: 15px; color: white; padding-left: 1vw; padding-top: 1vw;") Observações:
+        p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Observações: Este é um jogo de refexão que pode ter inúmeras variantes de “CAUSA DO PROBLEMA - PROBLEMA - SOLUÇÃO DO PROBLEMA”, de acordo com o ponto de vista de cada jogador e do grupo.
+        p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Defenda suas ideias, use diferentes argumentos, ouça a opinião do outro e não tema se outro jogador te convencer a olhar sobre um outro ponto de vista. O importante é encontrarmos juntos a solução!
+        p(style="color: white; padding-left: 1vw; padding-right: 1vw;") Colabore com sua opinião. Agradecemos a gentileza.
     
   include footer
 
