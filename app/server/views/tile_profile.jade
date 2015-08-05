@@ -1,29 +1,30 @@
 //- parameter data should be like { ... card1:card1, card2:card2, card3:card3, agrees, disagrees, discussion, edit-link, delete}
 mixin tile_profile(index, newData)
   div#trinca_voting(style='margin-left:0vw; margin-bottom:10px;', width='17vw')
-    div#voting_item(style='background-color:#B8E4F9; height:130px; width:470px;')
-      div#top_panel_left(style='background-color:#126CA7; color:white; height:20px; margin-left:15px; width:auto; padding:4px 2px 2px 10px;')
-        a(href='#', style='text-decoration:none; color:#FFF;')= newData[index].date
-      div#top_panel_right(style='background-color:#126CA7; color:#1A441F; height:20px; margin-left:245px; margin-top:-26px; width:auto; padding:4px 2px 2px 125px;')
-        a(href='#', style='text-decoration:none; color:#FFF;')= newData[index].user
-      div#inner_panel(style='background-color:#126CA7; margin-left:15px; height:74px; max: width;')
-        //- div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
-        //-   a(href='#', style='margin-left:40px; text-decoration:none;')= newData[index].card1
-        //-   a(href='#', style='margin-left:90px; text-decoration:none;')= newData[index].card2
-        //-   a(href='#', style='margin-left:95px; text-decoration:none;')= newData[index].card3
-        ul(style=" margin-left: 0px;")
-          li(style="list-style-type: none; display: inline-block")
-            div(style=" overflow: hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;")
-              img( src= "../img/cards/"+newData[index].card1+".png") 
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
-          li(style="list-style-type: none; display: inline-block")
-            div(style=" overflow:hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;")
-              img( src= "../img/cards/"+newData[index].card2+".png")
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
-          li(style="list-style-type: none; display: inline-block")
-            div(style="overflow:hidden; height: 80px; width: 120px; margin-top: -0.5vw; margin-left: 1vw;") 
-              img( src= "../img/cards/"+newData[index].card3+".png")  
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
+    div#voting_item(style='background-color:#B8E4F9; height: auto; width:500px;')
+      div(style="background-color: #126CA7; width: 500px; height: 108px; margin: 0 0 0 17px;")
+        div#top_panel_left(style='background-color:#126CA7; color: white; height: 15px; margin-left: 15px; width:auto; padding: 0px 2px 10px 10px;')
+          a(href='#', style='text-decoration:none; color:#FFF;')= newData[index].date
+        div#top_panel_right(style='background-color:#126CA7; color:#1A441F; height: 20px; margin: -26px 0 0 245px; width:auto; padding: 0px 2px 10px 125px;')
+          a(href='#', style='text-decoration: none; color:#FFF;')= newData[index].user
+        div#inner_panel(style='background-color:#126CA7; height: 60px; margin: 0 0 0 15px; max: width;')
+          //- div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
+          //-   a(href='#', style='margin-left:40px; text-decoration:none;')= newData[index].card1
+          //-   a(href='#', style='margin-left:90px; text-decoration:none;')= newData[index].card2
+          //-   a(href='#', style='margin-left:95px; text-decoration:none;')= newData[index].card3
+          ul(style=" margin: 0 0 0 0;")
+            li(style="list-style-type: none; display: inline-block")
+              div(style=" overflow: hidden; height: 80px; width: 120px; margin-top: 0vw; margin-left: 1vw;")
+                img( src= "../img/cards/"+newData[index].card1+".png") 
+                img(src='../img/arrow@3x.png', height='80px', width='120px')
+            li(style="list-style-type: none; display: inline-block")
+              div(style=" overflow:hidden; height: 80px; width: 120px; margin-top: 0vw; margin-left: 1vw;")
+                img( src= "../img/cards/"+newData[index].card2+".png")
+                img(src='../img/arrow@3x.png', height='80px', width='120px')
+            li(style="list-style-type: none; display: inline-block")
+              div(style="overflow:hidden; height: 80px; width: 120px; margin-top: 0vw; margin-left: 1vw;") 
+                img( src= "../img/cards/"+newData[index].card3+".png")  
+                img(src='../img/arrow@3x.png', height='80px', width='120px')
         
         
         //- img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:25px;')
@@ -32,10 +33,10 @@ mixin tile_profile(index, newData)
         //- img(src='img/arrow@3x.png',     height='80px', width='120px', style='margin-left:-50px; margin-top:5px;')
         //- img(src='img/card_elem@3x.png', height='80px', width='120px', style='margin-top:-10px; margin-left:-50px;')
         //- 
-      div#foot_panel(style='background-color:#64B6E3; margin-left:15px; height:30px; color:white;')
+      div#foot_panel(style='background-color:#64B6E3; margin: 0 0 0 17px; height:30px; width: 500px; color:white;')
         a(href='#', style='margin-left:20px; color:#FFF;') EDITAR
         a(href='#', style='margin-left:20px; color:#FFF;') EXCLUIR
-        img(src='img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left:9vw;')
+        img(src='img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left: 150px;')
         |(-)
         img(src='img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
         |(-)
