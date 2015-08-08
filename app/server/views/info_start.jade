@@ -1,6 +1,11 @@
 extends layout_bootstrap
+include tile_publish.jade
+
 
 block content
+
+  - var trincas = typeof(tdata) != 'undefined' ? tdata : { }
+
   div#carousel-div(class='carousel slide', data-ride='carousel', style='background-color:none; height:300px; width:450px; margin-left:-210px; left:28vw; top: 80px;')
   
     ol(class='carousel-indicators')
@@ -38,16 +43,27 @@ block content
       li
         a(href='') Acordos
   
-  div#content_block(style='position:absolute; margin-top:-220px;')
+  div#content_block(style=' margin-top:-220px;')
     div(style='margin-left:50vw;')  
       include tiles_titles.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      include tile_trinca.jade
-      
+  //-     //- include tile_trinca.jade
+  //-     //- include tile_trinca.jade
+  //-     //- include tile_trinca.jade
+  //-     //- include tile_trinca.jade
+  //- 
+  //- div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;')  
+  //-   a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas Finalizadas
+  //-   div(style='margin-top:20px;')
+  //-     include tiles_titles.jade
+  
+  div#right(style='float:right; margin-left:600px;max-height:71.3vh;overflow-y:scroll;')
+    div#content_block(style='float:both;')
+      - for (var i=0; i < trincas.length; i++)
+          //- if(trincas[i].status == 'accept')
+          +tile_publish(i, trincas)    
 
 
-block scripts
-script(src='vendor/jquery-1.11.1.js')
-script(src='vendor/bootstrap/js/bootstrap.min.js')	
+  block scripts
+  script(src='vendor/jquery-1.11.1.js')
+  script(src='vendor/bootstrap/js/bootstrap.min.js')
+  script(src='../../js/views/refresh.js')	

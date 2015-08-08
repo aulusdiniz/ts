@@ -48,7 +48,15 @@ module.exports = function(app) {
 // start page w/o login //
 
 	app.get('/', function(req, res) {
-		res.render('info_start', {title: 'Trinca Social - Inicio'});
+		// res.render('info_start', {title: 'Trinca Social - Inicio'});
+		console.log("/info_start");
+		AM.getAllTrincaRecords(function(e, trincas){
+			console.log(trincas);
+			res.render('info_start', {
+				title : 'Trinca Social - Inicio',
+				tdata: trincas
+			});
+		});
 	});
 
 	// page how to play
@@ -201,12 +209,12 @@ module.exports = function(app) {
 						title : 'Trinca Social - Publicadas',
 						tdata: trincas
 					});
-				})
+				});
 			}
 			else{
 				res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
 				}
-			});
+			})
 		}
 	});
 
