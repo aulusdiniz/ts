@@ -630,6 +630,25 @@ window.onload = function() {
 		// deck.giveHand();
 		var trinca = new Trinca(createSlots(1,3,-3.3, 0));
 		window._trinca = trinca;
+		var causa = new Label("Causa");
+		var problema = new Label("Problema");
+		var solucao = new Label("Solução");
+
+		causa.x=50+desl_hor+2*(sprite_width+spacing_hor)*sprite_scale;
+		causa.y=37+desl_ver-3.3*spacing_ver;
+		causa.color='yellow';
+		problema.x=50+desl_hor+3*(sprite_width+spacing_hor)*sprite_scale;
+		problema.y=37+desl_ver-3.3*spacing_ver;
+		problema.color='yellow';
+		solucao.x=50+desl_hor+4*(sprite_width+spacing_hor)*sprite_scale;
+		solucao.y=37+desl_ver-3.3*spacing_ver;
+		solucao.color='yellow';
+		console.log("labels ok");
+
+		game.rootScene.addChild(causa);
+		game.rootScene.addChild(problema);
+		game.rootScene.addChild(solucao);
+
 		var dealer = new Dealer(deck, trinca);
 		//Destribui as 6 cards iniciais pro descarte.
 		/*for(var i=0;i<6;i++){
