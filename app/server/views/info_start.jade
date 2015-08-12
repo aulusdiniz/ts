@@ -1,67 +1,69 @@
 extends layout_bootstrap
-include tile_publish.jade
+include tile_info.jade
 
 
 block content
 
   - var trincas = typeof(tdata) != 'undefined' ? tdata : { }
+  div(style="display: inline-block;")
+    div(style="margin: 80px 0 0 15vw; ")
+      div#carousel-div(class='carousel slide', data-ride='carousel', style='background-color:none; height:300px; width:450px;')
+        ol(class='carousel-indicators')
+          li(data-target='#carousel-div', data-slide-to='0', class='active')
+          li(data-target='#carousel-div', data-slide-to='1')
+          li(data-target='#carousel-div', data-slide-to='2')
 
-  div#carousel-div(class='carousel slide', data-ride='carousel', style='background-color:none; height:300px; width:450px; margin-left:-210px; left:28vw; top: 80px;')
-  
-    ol(class='carousel-indicators')
-      li(data-target='#carousel-div', data-slide-to='0', class='active')
-      li(data-target='#carousel-div', data-slide-to='1')
-      li(data-target='#carousel-div', data-slide-to='2')
-
-    div(class='carousel-inner', role='listbox')
-      div(class='item active')
-        img(src='img/slice1.png')
-        //- div(class='carousel-caption')
-        //-   h4 Caption Text 1
-        //-   p Subcaption 1
-          
-      div(class='item')
-        img(src='img/slice1.png')
-          
-      div(class='item')
-        img(src='img/slice1.png')
-          
-    //- a(class='left carousel-control', href='#carousel-div', role='button', data-slide='prev')
-    //-   span(class='glyphicon glyphicon-chevron-left', aria-hidden='true')
-    //-   
-    //- a(class='right carousel-control', href='#carousel-div', role='button', data-slide='next')
-    //-   span(class='glyphicon glyphicon-chevron-right', aria-hidden='true')
+        div(class='carousel-inner', role='listbox')
+          div(class='item active')
+            img(src='img/slice1.png')
+            //- div(class='carousel-caption')
+            //-   h4 Caption Text 1
+            //-   p Subcaption 1
+              
+          div(class='item')
+            img(src='img/slice1.png')
+              
+          div(class='item')
+            img(src='img/slice1.png')
+      
+      div#menu_body(style="margin: 0 0 0 0;")
+        ul
+          li
+            a(href='') Trincas publicadas
+          li
+            a(href='') Minhas trincas
+          li  
+            a(href='') Área de atuação
+          li
+            a(href='') Acordos
+  div(style="margin: -400px 0 0 50vw; ")
+    div#content_block(style=' margin: 0 0 0 0;')
+      div(style='margin: 0 0 0 0;')  
+        include tiles_titles.jade
+    //-     //- include tile_trinca.jade
+    //-     //- include tile_trinca.jade
+    //-     //- include tile_trinca.jade
+    //-     //- include tile_trinca.jade
+    //- 
+    //- div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;')  
+    //-   a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas Finalizadas
+    //-   div(style='margin-top:20px;')
+    //-     include tiles_titles.jade
+            
+      //- a(class='left carousel-control', href='#carousel-div', role='button', data-slide='prev')
+      //-   span(class='glyphicon glyphicon-chevron-left', aria-hidden='true')
+      //-   
+      //- a(class='right carousel-control', href='#carousel-div', role='button', data-slide='next')
+      //-   span(class='glyphicon glyphicon-chevron-right', aria-hidden='true')
+    
+    div#right(style=' margin: 0 750px 50px 0; width: 485px; height: 600px; max-height:71.3vh; overflow-y:scroll;')
+      div#content_block(style='float:both;')
+        - for (var i=0; i < trincas.length; i++)
+            +tile_info(i, trincas)    
         
-  div#menu_body
-    ul
-      li
-        a(href='') Trincas publicadas
-      li
-        a(href='') Minhas trincas
-      li  
-        a(href='') Área de atuação
-      li
-        a(href='') Acordos
   
-  div#content_block(style=' margin-top:-220px;')
-    div(style='margin-left:50vw;')  
-      include tiles_titles.jade
-  //-     //- include tile_trinca.jade
-  //-     //- include tile_trinca.jade
-  //-     //- include tile_trinca.jade
-  //-     //- include tile_trinca.jade
-  //- 
-  //- div(style='width:auto;display:inline-block;margin-top:10px;margin-left:115px;margin-bottom:0px;')  
-  //-   a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas Finalizadas
-  //-   div(style='margin-top:20px;')
-  //-     include tiles_titles.jade
   
-  div#right(style='float:right; margin-left:600px;max-height:71.3vh;overflow-y:scroll;')
-    div#content_block(style='float:both;')
-      - for (var i=0; i < trincas.length; i++)
-          //- if(trincas[i].status == 'accept')
-          +tile_publish(i, trincas)    
-
+  include footer
 
   block scripts
   script(src='vendor/jquery-1.11.1.js')

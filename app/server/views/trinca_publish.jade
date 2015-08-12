@@ -19,13 +19,14 @@ block content
     div#content_block(style='float:both;')
       - for (var i=0; i < trincas.length; i++)
           if(trincas[i].status == 'voting')
-          +tile_publish(i, trincas)
+            +tile_publish(i, trincas)
   
   div#right(style='float:right; margin-left:55vw; position:absolute;max-height:71.3vh;overflow-y:scroll;')
     div#content_block(style='float:both;')
       - for (var i=0; i < trincas.length; i++)
           if(trincas[i].status == 'accept')
-          +tile_publish(i, trincas)      
+            +tile_publish(i, trincas)    
+            
 
   block scripts
   script(src='vendor/jquery-1.11.1.js')

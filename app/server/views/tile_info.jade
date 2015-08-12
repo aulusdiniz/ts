@@ -1,28 +1,28 @@
-mixin tile_publish(i, trinca)
-  div#trinca_voting(style='margin-bottom:10px;', width='17vw')
-    div#voting_item(style='background-color:#C7DF8B; height:130px; width:470px;')
+mixin tile_info(i, trinca)
+  div#trinca_voting(style='margin: 0 0 10px 0;', width='17vw')
+    div#voting_item(style='background-color:#C7DF8B; height:140px; width:473px;')
       div#top_panel_left(style='background-color:#28B34A; color:white; height:20px; margin-left:15px; width:auto; padding:4px 2px 2px 10px;')
-        a(href='#', style='text-decoration:none; color:#FFF; margin: 0 0 0 15px;')= trinca[i].date
-      div#top_panel_right(style='background-color:#28B34A; color:#1A441F; height:20px; margin-left:245px; margin-top:-26px; width:auto; padding:4px 2px 2px 125px;')
+        a(href='#', style='text-decoration:none; color:#FFF;')= trinca[i].date
+      div#top_panel_right(style='background-color:#28B34A; color:#1A441F; height:20px; margin-left:245px; margin-top:-20px; width:auto; padding:4px 2px 2px 125px;')
         a(href='#', style='text-decoration:none; color:#1A441F; font-weight:bold; font-size:15px;')= trinca[i].user
-      div#inner_panel(style='background-color:#28B34A; margin-left:15px; height:74px;')
+      div#inner_panel(style='background-color:#28B34A; margin: 0 0 0 15px; height: 90px;')
         //- div#card_text(style='position: absolute; padding:30px;', width='15px', height='130px')
           //- a(href='#', style='margin-left:40px; text-decoration:none;')= trinca[i].card1
           //- a(href='#', style='margin-left:90px; text-decoration:none;')= trinca[i].card2
           //- a(href='#', style='margin-left:95px; text-decoration:none;')= trinca[i].card3
         ul(style=" margin-left: 0px;")
-          li(style="list-style-type: none; display: inline-block")
-            div(style=" overflow: hidden; height: 75px; width: 120px; margin-top: 0px; margin-left: 20px;")
-              img( src= "../img/cards/"+trinca[i].card1+".png") 
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
-          li(style="list-style-type: none; display: inline-block")
-            div(style=" overflow:hidden; height: 75px; width: 120px; margin-top: 0px; margin-left: 20px;")
-              img( src= "../img/cards/"+trinca[i].card2+".png")
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
-          li(style="list-style-type: none; display: inline-block")
-            div(style="overflow:hidden; height: 75px; width: 120px; margin-top: 0px; margin-left: 20px;") 
-              img( src= "../img/cards/"+trinca[i].card3+".png")  
-              img(src='../img/arrow@3x.png', height='80px', width='120px')
+          li(style="list-style-type: none; display: inline-block;")
+            div(style=" overflow: hidden; height: 75px; width: 120px; margin-top: 15px; margin-left: 0px;")
+              img(style="width: 120px; ", src= "../img/cards/"+trinca[i].card1+".png") 
+              img(src='../img/arrow@3x.png', height='60px', width='100px')
+          li(style="list-style-type: none; display: inline-block;")
+            div(style=" overflow:hidden; height: 75px; width: 120px; margin-top: 15px; margin-left: 20px;")
+              img(style="width: 120px; ", src= "../img/cards/"+trinca[i].card2+".png")
+              img(src='../img/arrow@3x.png', height='60px', width='100px')
+          li(style="list-style-type: none; display: inline-block;")
+            div(style="overflow:hidden; height: 75px; width: 120px; margin-top: 15px; margin-left: 20px;") 
+              img(style="width: 120px; ", src= "../img/cards/"+trinca[i].card3+".png")  
+              img(src='../img/arrow@3x.png', height='60px', width='100px')
         
         
         
