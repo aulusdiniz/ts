@@ -8,68 +8,71 @@ block content
   - var votes = typeof(tvotes) != 'undefined' ? tvotes : { }
   - var canVote = typeof(canVote) != 'undefined' ? canVote : { }
   
-  div(style="background-color: none;")
-    div(style='width:auto;display:inline-block; margin: 35px 0 0 590px;')
-      a(style='color:#F4B718;text-decoration:none;font-size:20px; text-align:right;margin-left: 300px; font-weight:bold;') Trinca em Votação
-      div(style='margin-top: 20px;')
-        include tiles_titles.jade  
-    
-    div(style='position:absolute; margin:5px 0 0 580px; width: 500px; background-color: green')
-      +tile_trinca(trinca)
+  div(style="margin: 0 0 200px 0;")
+    div(style="background-color: none;")
+      div(style='width:auto;display:inline-block; margin: 35px 0 0 590px;')
+        a(style='color:#F4B718;text-decoration:none;font-size:20px; text-align:right;margin-left: 300px; font-weight:bold;') Trinca em Votação
+        div(style='margin-top: 20px;')
+          include tiles_titles.jade  
       
-      div(style='background-color: #91D0AD; margin-top: 10px; ')
-        h2(style='background-color:#91D0AD; display:inline-block; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify; word-wrap: break-word;')= trinca.justif
-      
-      div(style='background-color:#91D0AD;')
-        textarea#comment_vote(style='background-color:#91D0AD; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify;', rows="3", cols="62")
-          |Escreva um comentário e vote.
-            
-      div#foot_panel(style='background-color:#0DA85B; height:30px; color:white;')
-        if trinca.user != user.name
-          if canVote
-            img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left: 300px;')
-            a#agree(href='javascript:commentAndVote("good");') concordo
-            img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
-            a#disagree(href='javascript:commentAndVote("bad");') discordo
-        else if trinca.user === user.name
-          img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
-          a#comment(href='javascript:commentAndVote("comment");') comentar
-          img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
-          a#report(href='#') denunciar
-        else
-          img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
-          a#comment(href='javascript:commentAndVote("comment");') comentar
-          img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
-          a#report(href='#') denunciar
-
-      div#comments(style='background-color:#32AD67; overflow-y:scroll; max-height:235px;')
-        //- include tile_vote_comment.jade
-        - for (var i=0; i < votes.length; i++)
-            +tile_vote_comment(i, votes)
-            
-  div#profile_pic(style='position:absolute; margin: 0 0 0 300px')
-    ul(style='list-style: none;')
-      li
-        img(src='../img/profile_pic@3x.png')
-      li
-        a(style='margin-left:45px; color:white;') seguir
-            
-  div#profile_menu(style='position:absolute; margin:250px 0 0 280px; display:block; max-width:220px;')
-    ul(style='list-style: none; text-align:right;')
-      li
-        a(style='color:#F2B81F; font-size:15px;') Trincas publicadas (-)
-      li
-        a(style='color:#F2B81F; font-size:15px;') Trincas aprovadas (-)
-      li
-        a(style='color:#F2B81F; font-size:15px;') Trincas desaprovadas (-)
-      li
-        a(style='color:#F2B81F; font-size:15px;') Trincas em votação (-)
+      div(style='position:absolute; margin:5px 0 0 580px; width: 500px; background-color: green')
+        +tile_trinca(trinca)
         
-    ul(style='list-style: none; text-align:right; margin-top:50px;')
-      li
-        a(style='text-decoration:none; color:#FFF; font-size:17px; font-weight:regular;') ÁREA DE ATUAÇÃO
-      li  
-        a(style='text-decoration:none; color:#FFF; font-size:15px; font-weight:regular;') CASA
+        div(style='background-color: #91D0AD; margin-top: 10px; ')
+          h2(style='background-color:#91D0AD; display:inline-block; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify; word-wrap: break-word;')= trinca.justif
+        
+        div(style='background-color:#91D0AD;')
+          textarea#comment_vote(style='background-color:#91D0AD; color:#1F5F7F; border:none; width:97%; padding:3px 3px 0px 10px; text-align:justify;', rows="3", cols="62")
+            |Escreva um comentário e vote.
+              
+        div#foot_panel(style='background-color:#0DA85B; height:30px;')
+          if trinca.user != user.name
+            if canVote
+              img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left: 300px;')
+              a#agree(href='javascript:commentAndVote("good");', style="color: white;" ) concordo
+              img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
+              a#disagree(href='javascript:commentAndVote("bad");', style="color: white;") discordo
+          else if trinca.user === user.name
+            img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
+            a#comment(href='javascript:commentAndVote("comment");', style="color: white;") comentar
+            img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
+            a#report(href='#', style="color: white;") denunciar
+          else
+            img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
+            a#comment(href='javascript:commentAndVote("comment");', style="color: white;") comentar
+            img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
+            a#report(href='#', style="color: white;") denunciar
+
+        div#comments(style='background-color:#32AD67; overflow-y:scroll; max-height:235px;')
+          //- include tile_vote_comment.jade
+          - for (var i=0; i < votes.length; i++)
+              +tile_vote_comment(i, votes)
+              
+    div#profile_pic(style='position:absolute; margin: 0 0 0 300px')
+      ul(style='list-style: none;')
+        li
+          img(src='../img/profile_pic@3x.png')
+        li
+          a(style='margin-left:45px; color:white;') seguir
+              
+    div#profile_menu(style='margin:250px 0 0 280px; display:block; max-width:220px;')
+      ul(style='list-style: none; text-align:right;')
+        li
+          a(style='color:#F2B81F; font-size:15px;') Trincas publicadas (-)
+        li
+          a(style='color:#F2B81F; font-size:15px;') Trincas aprovadas (-)
+        li
+          a(style='color:#F2B81F; font-size:15px;') Trincas desaprovadas (-)
+        li
+          a(style='color:#F2B81F; font-size:15px;') Trincas em votação (-)
+          
+      ul(style='list-style: none; text-align:right; margin-top:50px;')
+        li
+          a(style='text-decoration:none; color:#FFF; font-size:17px; font-weight:regular;') ÁREA DE ATUAÇÃO
+        li  
+          a(style='text-decoration:none; color:#FFF; font-size:15px; font-weight:regular;') CASA
+          
+  include footer
       
   block scripts
     script(src='../vendor/jquery-1.11.1.js')

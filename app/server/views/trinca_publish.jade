@@ -14,19 +14,21 @@ block content
     a(style='color:#F4B718;text-decoration:none;font-size:20px;text-align:right;margin-left:22vw;font-weight:bold;') Trincas Finalizadas
     div(style='margin-top:20px;')
       include tiles_titles.jade
-      
-  div#left(style='float:left; margin-left:100px; position:absolute;max-height:71.3vh;overflow-y:scroll;')
-    div#content_block(style='float:both;')
-      - for (var i=0; i < trincas.length; i++)
-          if(trincas[i].status == 'voting')
-            +tile_publish(i, trincas)
   
-  div#right(style='float:right; margin-left:55vw; position:absolute;max-height:71.3vh;overflow-y:scroll;')
-    div#content_block(style='float:both;')
-      - for (var i=0; i < trincas.length; i++)
-          if(trincas[i].status == 'accept')
-            +tile_publish(i, trincas)    
+  div(style="height: 600px; margin: 0 0 80px 0;")    
+    div#left(style='float:left; margin-left:100px; position:absolute;max-height:71.3vh;overflow-y:scroll;')
+      div#content_block(style='float:both;')
+        - for (var i=0; i < trincas.length; i++)
+            if(trincas[i].status == 'voting')
+              +tile_publish(i, trincas)
+    
+    div#right(style='float:right; margin: 0 0 0 55vw; max-height:71.3vh;overflow-y:scroll;')
+      div#content_block(style='float:both;')
+        - for (var i=0; i < trincas.length; i++)
+            if(trincas[i].status == 'accept')
+              +tile_publish(i, trincas)  
             
+  include footer            
 
   block scripts
   script(src='vendor/jquery-1.11.1.js')
