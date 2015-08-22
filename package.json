@@ -16,9 +16,9 @@
   "private": true,
   "dependencies": {
     "emailjs": "0.3.3",
-    "express": "^3.0.6",
+    "express": "~3.21.2",
     "jade": "^0.27.7",
-    "moment": "1.7.2",
+    "moment": "~2.10.6",
     "mongodb": "^1.2.7",
     "mongojs": "^0.17.0",
     "stylus": "^0.31.0"

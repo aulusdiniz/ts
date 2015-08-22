@@ -29,6 +29,24 @@ var votes = db.collection('votes');
 // numero de votos positivos para encerrar a trinca.
 const nOkTrincasForAccept = 1;
 
+moment.locale('pt-br',{
+	relativeTime : {
+        future: "em %s",
+        past:   "%s atrás",
+        s:  "segundos",
+        m:  "um minuto",
+        mm: "%d minutos",
+        h:  "uma hora",
+        hh: "%d horas",
+        d:  "um dia",
+        dd: "%d dias",
+        M:  "um mês",
+        MM: "%d meses",
+        y:  "um ano",
+        yy: "%d anos"
+    }
+});
+
 // 86400000
 setInterval(function()
 {
@@ -36,10 +54,12 @@ setInterval(function()
 		function(e, res) {
 		if (e) console.log(e);
 		else {
+			console.log("RES = ");
+			console.log(res);
 			var ind = 0;
 			for(ind = 0; ind < res.length; ind++){
-				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
-				var b = a;
+				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
+				var b = a.toArray();
 
 				var time = moment(b).startOf('second').fromNow().toString().split(" ");
 				var unitMesure = time[1];
@@ -142,6 +162,8 @@ exports.findVotesByTrinca = function(id, callback){
 exports.publishTrinca = function(newData, callback){
 	trincas.findOne({user:newData.user}, function(e, o){
 		newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		var duration = moment.duration(2, 'days');
+		newData.dateEndVote = moment().add(duration).format('MMMM Do YYYY, h:mm:ss a');
 		trincas.insert(newData, {safe: true}, callback);
 	});
 }
@@ -154,9 +176,25 @@ exports.getAllTrincaRecords = function(callback)
 		else {
 			var ind = 0;
 			for(ind = 0; ind < res.length; ind++){
-				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
-				var b = a;
-				res[ind].date = moment(b).startOf('second').fromNow();
+				// var dateVote = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
+				// dateVote = dateVote.toArray();
+				var endVote = moment(res[ind].dateEndVote, "MMMM DD YYYY, h:mm:ss a");
+				endVote = endVote.toArray();
+				//Remember the other tiles must work in order to complete this issue.
+				//-------------------------------------------------------------------
+				//	1. make the function exports.getAllTrincaUser work too.
+				//	2. make the tests to assess the results.
+				//
+				var momentBefore = moment().isBefore(endVote);
+				if(momentBefore){
+					//If NOW is before 'endVote' that means not expired.
+					res[ind].date = ("Será finalizada " + moment().to(endVote) + ".");
+				}
+				else{
+					//else it must write: "Encerrada DD dias atrás".
+					res[ind].date = ("Foi finalizada há " + moment(endVote).fromNow('seconds') + ".");
+				}
+
 			}
 			callback(null, res);
 		}
@@ -169,17 +207,34 @@ exports.getAllTrincaUser = function(data, callback)
 		function(e, res) {
 		if (e) callback(e)
 		else{
+			var ind = 0;
 			for(ind = 0; ind < res.length; ind++){
-				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a").toArray();
-				var b = a;
-				res[ind].date = moment(b).startOf('second').fromNow();
+				// var dateVote = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
+				// dateVote = dateVote.toArray();
+				var endVote = moment(res[ind].dateEndVote, "MMMM DD YYYY, h:mm:ss a");
+				endVote = endVote.toArray();
+				//Remember the other tiles must work in order to complete this issue.
+				//-------------------------------------------------------------------
+				//	1. make the function exports.getAllTrincaUser work too.
+				//	2. make the tests to assess the results.
+				//
+				var momentBefore = moment().isBefore(endVote);
+				if(momentBefore){
+					//If NOW is before 'endVote' that means not expired.
+					res[ind].date = ("Será finalizada " + moment().to(endVote) + ".");
+				}
+				else{
+					//else it must write: "Encerrada DD dias atrás".
+					res[ind].date = ("Foi finalizada há " + moment(endVote).fromNow('seconds') + ".");
+				}
+
 			}
 		callback(null, res);
 		}
 	});
 }
 
-exports.findTrincaById = function(id, callback)
+exports.findtrincabyid = function(id, callback)
 {
 	try{
 		var id_found = ObjectID.createFromHexString(id);
