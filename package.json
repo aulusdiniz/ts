@@ -15,6 +15,7 @@
   },
   "private": true,
   "dependencies": {
+<<<<<<< Updated upstream
     "emailjs": "0.3.3",
     "express": "~3.21.2",
     "jade": "^0.27.7",
