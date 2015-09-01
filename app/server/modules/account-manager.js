@@ -234,7 +234,7 @@ exports.getAllTrincaUser = function(data, callback)
 	});
 }
 
-exports.findtrincabyid = function(id, callback)
+exports.findTrincaById = function(id, callback)
 {
 	try{
 		var id_found = ObjectID.createFromHexString(id);

@@ -135,7 +135,7 @@ module.exports = function(app) {
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-					res.redirect('/game');
+						res.redirect('/game');
 				}	else{
 					res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
 				}
