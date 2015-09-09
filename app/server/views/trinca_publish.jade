@@ -22,7 +22,7 @@ block content
             if(trincas[i].status == 'voting')
               +tile_publish(i, trincas)
     
-    div#right(style='float:right; margin: 0 0 0 55vw; max-height:71.3vh;overflow-y:scroll;')
+    div#right(style='float:left; margin: 0 0 0 55vw; max-height:71.3vh;overflow-y:scroll;')
       div#content_block(style='float:both;')
         - for (var i=0; i < trincas.length; i++)
             if(trincas[i].status == 'accept' || trincas[i].status == 'reject')
