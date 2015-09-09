@@ -2,6 +2,7 @@
 var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+
 var trinca_id_found = "Not initialized.";
 
 module.exports = function(app) {
@@ -49,9 +50,7 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res) {
 		// res.render('info_start', {title: 'Trinca Social - Inicio'});
-		console.log("/info_start");
 		AM.getAllTrincaRecords(function(e, trincas){
-			console.log(trincas);
 			res.render('info_start', {
 				title : 'Trinca Social - Inicio',
 				tdata: trincas
@@ -127,7 +126,7 @@ module.exports = function(app) {
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-					res.render('/game');
+					res.render('game');
 				}	else{
 					res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
 				}
@@ -135,7 +134,7 @@ module.exports = function(app) {
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-						res.render('/game');
+						res.render('game');
 				}	else{
 					res.render('login', { title: 'Bem vindo - Por favor, acesse sua conta' });
 				}
@@ -264,12 +263,12 @@ module.exports = function(app) {
 						trinca_id_found = trinca_ids;
 						this.trinca_f = trinca_ids;
 					}
-					console.log("≈√trinca_id_found = ");
-					console.log(this.trinca_f);
+					// console.log("≈√trinca_id_found = ");
+					// console.log(this.trinca_f);
 
 					AM.findVotesByTrinca(this.trinca_f._id+"", function(votes){
-						console.log("≈√votes");
-						console.log(votes);
+						// console.log("≈√votes");
+						// console.log(votes);
 
 						this.voteOp = true;
 

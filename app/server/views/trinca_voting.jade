@@ -28,21 +28,16 @@ block content
         div#foot_panel(style='background-color:#0DA85B; height:30px;')
           if trinca.user != user.name
             if canVote
-              img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left: 300px;')
+              img(src='../img/agrees_icon@3x.png', height='30px', width='30px', style='margin-left: 30px;')
               a#agree(href='javascript:commentAndVote("good");', style="color: white;" ) concordo
               img(src='../img/disagrees_icon@3x.png', height='30px', width='30px', style='margin-left:10px;')
               a#disagree(href='javascript:commentAndVote("bad");', style="color: white;") discordo
-          else if trinca.user === user.name
-            img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
-            a#comment(href='javascript:commentAndVote("comment");', style="color: white;") comentar
-            img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
-            a#report(href='#', style="color: white;") denunciar
-          else
-            img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='margin-left:300px;')
-            a#comment(href='javascript:commentAndVote("comment");', style="color: white;") comentar
-            img(src='../img/report.png', height='30px', width='30px', style='margin-left:10px;')
-            a#report(href='#', style="color: white;") denunciar
 
+          img(src='../img/discussion_icon@3x.png', height='30px', width='30px', style='padding-left:10px;')
+          a#comment(href='javascript:commentAndVote("comment");', style="color: yellow;") comentar
+          img(src='../img/report.png', height='30px', width='30px', style='margin-left:70px;')
+          a#report(href='#', style="color: white;") denunciar
+          
         div#comments(style='background-color:#32AD67; overflow-y:scroll; max-height:235px;')
           //- include tile_vote_comment.jade
           - for (var i=0; i < votes.length; i++)

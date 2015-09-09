@@ -27,7 +27,7 @@ var trincas = db.collection('trincas');
 var votes = db.collection('votes');
 
 // numero de votos positivos para encerrar a trinca.
-const nOkTrincasForAccept = 1;
+const nOkTrincasForAccept = 10;
 
 moment.locale('pt-br',{
 	relativeTime : {
@@ -48,99 +48,42 @@ moment.locale('pt-br',{
 });
 
 // 86400000
-setInterval(function()
-{
-	trincas.find().sort({ $natural : -1 }).toArray(
-		function(e, res) {
-		if (e) console.log(e);
-		else {
-			console.log("RES = ");
-			console.log(res);
-			var ind = 0;
-			for(ind = 0; ind < res.length; ind++){
-				var a = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
-				var b = a.toArray();
+setInterval(function(){
+	trincas.find({"status":"voting"}).toArray(function (e, res){
+		for (var index in res) {
+			var trinca_tmp = res[index];
 
-				var time = moment(b).startOf('second').fromNow().toString().split(" ");
-				var unitMesure = time[1];
-				var value = parseInt(time[0]);
+			if (res.hasOwnProperty(index)) {
+				var mmnt = moment(res[index].dateEndVote, 'MMMM Do YYYY, h:mm:ss a');
+				var shouldFinishTrinca = moment().isAfter(mmnt);
 
+				if (shouldFinishTrinca) {
+					votes.find({"trinca_id._id":res[index]._id, "vote":"good"}).count(function(e, res){
+						if (res>nOkTrincasForAccept-1){
+							trinca_tmp.status = "accept";
+							trincas.save(trinca_tmp, {safe:true}, function(e) {
+							});
+						}
+					});
 
-				if(value>3 && unitMesure=="days")
-				{
-					console.log("Avaliando trinca expirada..");
-					console.log(res[ind]);
-
-					try{
-						var id_found = ObjectID.createFromHexString(res[ind]._id);
-						votes.find({"trinca_id._id": id_found, "vote":"bad"}).toArray(function(e, res){
-							// numero de votos positivos para encerrar a trinca a provada.
-							if(res.length>this.nOkTrincasForAccept){
-								res[ind].status = "rejected";
-								trincas.save(res[ind], {safe: true}, function()
-								{
-									console.log("trinca rejeitada try");
-								});
-							}
-						});
-					}
-					catch(e)
-					{
-						var id_found = res[ind]._id;
-						votes.find({"trinca_id._id": id_found, "vote":"bad"}).toArray(function(e, res){
-							// numero de votos positivos para encerrar a trinca a provada.
-							if(res.length>this.nOkTrincasForAccept){
-								res[ind].status = "rejected";
-								trincas.save(res[ind], {safe: true}, function()
-								{
-									console.log("trinca rejeitada catch");
-								});
-							}
-						});
-					}
-
-					try{
-						var id_found = ObjectID.createFromHexString(res[ind]._id);
-						votes.find({"trinca_id._id": id_found, "vote":"good"}).toArray(function(e, res){
-							// numero de votos positivos para encerrar a trinca a provada.
-							if(res.length>this.nOkTrincasForAccept){
-								res[ind].status = "accept";
-								trincas.save(res[ind], {safe: true}, function()
-								{
-									console.log("trinca aceita try");
-								});
-							}
-						});
-					}
-					catch(e)
-					{
-						var id_found = res[ind]._id;
-						votes.find({"trinca_id._id": id_found, "vote":"good"}).toArray(function(e, res){
-							// numero de votos positivos para encerrar a trinca a provada.
-							if(res.length>this.nOkTrincasForAccept){
-								res[ind].status = "accept";
-								trincas.save(res[ind], {safe: true}, function()
-								{
-									console.log("trinca aceita catch");
-								});
-							}
-						});
-					}
-
+					votes.find({"trinca_id._id":res[index]._id, "vote":"bad"}).count(function(e, res){
+						if (trinca_tmp.status == "voting"){
+							trinca_tmp.status = "reject";
+							trincas.save(trinca_tmp, {safe:true}, function(e) {
+							});
+						}
+					});
 				}
 			}
 		}
 	});
-}, 15000);
+}, 5000);
 
 exports.commentTrinca = function(newData, callback){
 	votes.insert(newData, {safe:true}, callback);
 }
 
 exports.findVotesByTrinca = function(id, callback){
-	// var id_found = ObjectID.createFromHexString(id);
-	// try without _id: id_found ==>> {trinca_id: {_id: id_found}}
-
 	try{
 		var id_found = ObjectID.createFromHexString(id);
 		votes.find({"trinca_id._id": id_found}).sort({ $natural : -1 }).toArray(
@@ -162,7 +105,7 @@ exports.findVotesByTrinca = function(id, callback){
 exports.publishTrinca = function(newData, callback){
 	trincas.findOne({user:newData.user}, function(e, o){
 		newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-		var duration = moment.duration(2, 'days');
+		var duration = moment.duration(3, 'days');	// HERE TO SET THE NUMBER OF DAY TO CLOSE TRINCA.
 		newData.dateEndVote = moment().add(duration).format('MMMM Do YYYY, h:mm:ss a');
 		trincas.insert(newData, {safe: true}, callback);
 	});
@@ -176,22 +119,13 @@ exports.getAllTrincaRecords = function(callback)
 		else {
 			var ind = 0;
 			for(ind = 0; ind < res.length; ind++){
-				// var dateVote = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
-				// dateVote = dateVote.toArray();
 				var endVote = moment(res[ind].dateEndVote, "MMMM DD YYYY, h:mm:ss a");
 				endVote = endVote.toArray();
-				//Remember the other tiles must work in order to complete this issue.
-				//-------------------------------------------------------------------
-				//	1. make the function exports.getAllTrincaUser work too.
-				//	2. make the tests to assess the results.
-				//
 				var momentBefore = moment().isBefore(endVote);
 				if(momentBefore){
-					//If NOW is before 'endVote' that means not expired.
 					res[ind].date = ("Será finalizada " + moment().to(endVote) + ".");
 				}
 				else{
-					//else it must write: "Encerrada DD dias atrás".
 					res[ind].date = ("Foi finalizada há " + moment(endVote).fromNow('seconds') + ".");
 				}
 
@@ -209,22 +143,13 @@ exports.getAllTrincaUser = function(data, callback)
 		else{
 			var ind = 0;
 			for(ind = 0; ind < res.length; ind++){
-				// var dateVote = moment(res[ind].date, "MMMM DD YYYY, h:mm:ss a");
-				// dateVote = dateVote.toArray();
 				var endVote = moment(res[ind].dateEndVote, "MMMM DD YYYY, h:mm:ss a");
 				endVote = endVote.toArray();
-				//Remember the other tiles must work in order to complete this issue.
-				//-------------------------------------------------------------------
-				//	1. make the function exports.getAllTrincaUser work too.
-				//	2. make the tests to assess the results.
-				//
 				var momentBefore = moment().isBefore(endVote);
 				if(momentBefore){
-					//If NOW is before 'endVote' that means not expired.
 					res[ind].date = ("Será finalizada " + moment().to(endVote) + ".");
 				}
 				else{
-					//else it must write: "Encerrada DD dias atrás".
 					res[ind].date = ("Foi finalizada há " + moment(endVote).fromNow('seconds') + ".");
 				}
 
