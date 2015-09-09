@@ -27,7 +27,7 @@ var trincas = db.collection('trincas');
 var votes = db.collection('votes');
 
 // numero de votos positivos para encerrar a trinca.
-const nOkTrincasForAccept = 10;
+const nOkTrincasForAccept = 20;
 
 moment.locale('pt-br',{
 	relativeTime : {
@@ -79,6 +79,9 @@ setInterval(function(){
 	});
 }, 5000);
 
+// TODO: Fazer função para buscar dados de votação por id de trinca
+// a funcao deve retornar o id de trinca e os dados de votos positivos, negativos, aprovadas, rejeitadas e em aberto.
+
 exports.commentTrinca = function(newData, callback){
 	votes.insert(newData, {safe:true}, callback);
 }
@@ -126,7 +129,12 @@ exports.getAllTrincaRecords = function(callback)
 					res[ind].date = ("Será finalizada " + moment().to(endVote) + ".");
 				}
 				else{
-					res[ind].date = ("Foi finalizada há " + moment(endVote).fromNow('seconds') + ".");
+					if(res[ind].status=='accept'){
+						res[ind].date = ("Foi aceita há " + moment(endVote).fromNow('seconds') + ".");
+					}
+					else {
+						res[ind].date = ("Foi rejeitada há " + moment(endVote).fromNow('seconds') + ".");
+					}
 				}
 
 			}
